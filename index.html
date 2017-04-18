@@ -1,50 +1,189 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>比美麗的湯更美麗：pyquery</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/night.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/isagalaev/highlight.js/848a00c8/src/styles/solarized-dark.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <style>
+        section img {
+            border: none !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h2>比美麗的湯更美麗</h2>
+                    <h1>pyquery</h1>
+                    <p>
+                        <small>
+                            Presented by <a href="http://aji.tw">劉純睿</a>
+                            a.k.a 
+                            <a href="http://aji.tw">阿吉</a>
+                        </small>
+                    </p>
+                </section>
+                <section data-background="img/me.jpg">
+                    <h2>About me</h2\>
+                    <p>
+                        <a href="http://aji.tw" target="_blank" style="color:black;font-weight:bold">aji.tw</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Outline</h2>
+                    <ol>
+                        <li>The Basics</li>
+                        <li>Comparison</li>
+                        <li>Digging deeper</li>
+                        <li>Practical Experience</li>
+                        <li>Q &amp; A</li>
+                    </ol>
+                </section>
+                <section>
+                    <section>
+                        <h1>The Basics</h1>
+                    </section>
+                    <section>
+                        <h2>Camel Case Alias</h2>
+                    </section>
+                    <section>
+                        <h2>Resource</h2>
+                        <p style="display:inline-block">
+                            <a href="http://pyquery.readthedocs.io/en/latest/" target="_blank">
+                                <img src="http://www.wbh-doc.com.s3.amazonaws.com/Python-OpenSource-Project-Developer-Guide/_images/readthedocs-logo.png" />
+                            </a>
+                        <p>
+                            <a href="https://github.com/gawel/pyquery" target="_blank">
+                                <img
+                                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" 
+                                    height="100px"
+                                />
+                            </a>
+                        </p>
+                        <p class="fragment">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/JQuery_logo.svg/360px-JQuery_logo.svg.png" />
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Comparison</h1>
+                    </section>          
+                    <section>
+                        <h3>Built-in URL Opener</h3>
+                        <pre><code class="hljs python" data-trim>
+>>> url = 'https://www.ptt.cc/bbs/joke/index.html'
+>>> PyQuery(url)
+[html]
+>>> BeautifulSoup(url)
+Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Find First Element</h3>
+                        <pre><code class="hljs python">
+# BeautifulSoup
+soup.find(class_='r-ent').text
+soup.select('.r-ent')[0].text
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+# PyQuery
+dom('.r-ent:first').text()
+dom('.r-ent').eq(0).text()
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Iterate Elements and Get Attributes</h2>
+                        <pre><code class="hljs python" data-trim>
+# BeautifulSoup
+[i.find('a').attrs['href'] for i in soup.find_all(class_='r-ent')]
+[i.attrs['href'] for i in soup.select('.r-ent a')]
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+# PyQuery
+[i.attr('href') for i in dom('.r-ent a').items()]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Select Text Without Tag</h3>
+                        <small>Example: https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html</small>
+                    </section>
+                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
+                    </section>
+                    <section>
+                        <pre><code class="hljs python" data-trim>
+# BeautifulSoup
+soup.find_all(class_='article-metaline')[-1].nextSibling
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+# PyQuery
+dom('#main-content').remove('*').text()
+dom('#main-content').clone().remove('*').text()
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Find All Elements Before Certain Element</h3>
+                        <small>Example: https://www.ptt.cc/bbs/joke/index.html</small>
+                    </section>
+                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/index.html">
+                    </section>
+                    <section>
+                        <pre><code class="hljs python" data-trim>
+# BeautifulSoup
+eles = []
+for ele in soup.find_all(attrs={'class': ['r-ent', 'r-list-sep']}):
+    if ele.attrs['class'][0] == 'r-list-sep':
+        break
+    else:
+        eles.append(ele)
+
+# PyQuery
+eles = dom('.r-list-sep').prev_all('.r-ent')
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-background="https://i.giphy.com/3o6Zt3AC93PIPAdQ9a.gif">
+                    <h1 style="color:#000000">Thank you</h1>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ],
+                parallaxBackgroundImage: 'http://www.allmacwallpaper.com/get/Retina-MacBook-Pro-15-inch-wallpapers/Aurora-Borealis-2880x1800/9336-8.jpg',
+                parallaxBackgroundHorizontal: 200,
+                parallaxBackgroundVertical: 50
+
+            });
+        </script>
+    </body>
 </html>
