@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>新聞稿撰寫講座心得寫作/黃微蓉</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -20,12 +20,104 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+		@font-face {
+		  font-family: 'cwTeXYen';
+		  font-style: normal;
+		  font-weight: 500;
+		  src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.eot);
+		  src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.eot?#iefix) format('embedded-opentype'),
+		       url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff2) format('woff2'),
+		       url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff) format('woff'),
+		       url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.ttf) format('truetype');
+		}
+		* {
+		        font-family: Arial, 'cwTeXYen' !important;
+		}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>新聞稿撰寫講座<br>心得分享</h1>
+					<small>黃微蓉  2017.05.10</small>
+				</section>
+				<section data-markdown>
+					## 大綱
+
+					0. 認識媒體與發展趨勢
+					0. 新聞稿 VS. 澄清稿
+					0. 新聞稿寫作原則與技巧
+					0. 範例賞析
+				</section>
+				<section data-markdown>
+					## 認識媒體與發展趨勢 
+
+					0. 呈現多方聲
+					0. 網路媒體盛
+					0. 議題、話題都能變新聞
+				</section>
+				<section data-background-iframe="http://www.appledaily.com.tw/realtimenews/article/new/20131022/278921/">
+				</section>
+				<section data-background-iframe="http://movies.ettoday.net/news/551721">
+				</section>
+				<section data-transition="slide" data-background-transition="zoom">
+					<section data-background="#4d7e65" >
+						<h2>新聞稿 VS. 澄清稿 </h2>
+					</section>
+					<section>
+						<h3>新聞稿</h3>
+						  政府發布單位消息，宣導政令用
+							<br><br><br>
+						<h3>澄清稿</h3>
+						  政府對於不利報導的回應
+					</section>
+				</section>
+				<section data-transition="slide" data-background-transition="zoom">
+					<section data-background="#4d7e65" >
+						<h2>新聞稿寫作原則 </h2>
+					</section>
+					<section>
+						<h2>5W1H1P</h2>
+						<p class="fragment">5W：Who、Where、When、What、Why</p>
+						<p class="fragment">1H：How</p>
+						<p class="fragment">1P：Picture</p>
+					</section>
+				</section>
+				<section data-transition="slide" data-background-transition="zoom">
+					<section data-background="#4d7e65" >
+						<h2>新聞稿寫作技巧 </h2>
+					</section>
+					<section>
+						<h3>新聞稿寫作技巧 </h3>
+						<ol>
+							<li>標題是吸引閱讀關鍵</li>
+							<li class="fragment">敘事倒金字塔</li>
+							<li class="fragment">字數不宜過少</li>
+							<li class="fragment">提高民眾參與感:故事點與溫度</li>
+							<li class="fragment">視覺化</li>
+						</ol>
+					</section>
+				</section>
+				<section data-transition="slide" data-background-transition="zoom">
+					<section data-background="#4d7e65" >
+						<h1>範例賞析</h1>
+					</section>
+					<section data-background-iframe="http://www.nownews.com/n/2016/11/26/2319122">
+					</section>
+					<section data-background-iframe="https://udn.com/news/story/6939/1285464">
+					</section>
+					<section data-background-iframe="http://www.ktnp.gov.tw/News_Content4.aspx?n=3D7C9BFC4F86BF4A&sms=CBE2AF4E776CBCD5&s=900A6A98FCC5F1AE">
+					</section>
+					<section data-background-iframe="./src/information_15_9775.html">
+					</section>
+					<section data-background-iframe="./src/information_15_9752.html">
+					</section>
+				</section>
+				<section data-background="src/end.gif">
+					<h1>Thank You!</h1>
+				</section>
 			</div>
 		</div>
 
@@ -33,17 +125,19 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
-				history: true,
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
+				],
+				parallaxBackgroundImage: './src/9336-8.jpg',
+				parallaxBackgroundHorizontal: 200,
+				parallaxBackgroundVertical: 50
 			});
 		</script>
 	</body>
