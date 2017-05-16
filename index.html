@@ -1,50 +1,581 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>Mezzanine</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/moon.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+        <style>
+        .mezzanine {
+            float: left;
+            line-height: 150px;
+            width: 250px;
+            height: 250px;
+            text-align: center;
+            margin: 30px 25px 10px 0;
+            border-radius: 1000px;
+            background: rgb(189, 54, 47);
+            position: relative;
+        }
+        .mezzanine:after {
+            content: 'MEZZANINE';
+            color: #ffffff;
+            font-family: 'Yanone Kaffeesatz';
+            display: inline-block;
+            height: 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: absolute;
+            top: 3px;
+            left: 18px;
+            width: 40px;
+            vertical-align: center;
+            padding: 0;
+            text-align: center;
+            line-height: 255px;
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        }
+        .snippet-title {
+            text-align: left !important;
+            padding-left: 50px !important;
+            font-size: 32px !important;
+        }
+        </style>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <span class="mezzanine" style="left:100px;top:10px"></span>
+                    <img width="48%" src="http://cdn.solertium.com/system/images/binaries/000/000/197/original/heroku-logo.jpg?1395788529" style="border-radius:25px;">
+                    <br>
+                    <h3>Create your blog in 20 mins</h3>
+                    <p>
+                        <small>
+                            Presented by <a href="http://aji.tw">劉純睿</a>
+                            a.k.a 
+                            <a href="http://aji.tw">阿吉</a>
+                        </small>
+                    </p>
+                </section>
+                <section data-background="img/me.jpg">
+                    <h2>About me</h2>
+                    <p>
+                        <a href="http://aji.tw" target="_blank" style="color:black;font-weight:bold">aji.tw</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>What you need...</h2>
+                    <ul>
+                        <li class="fragment">A Heroku account</li>
+                        <li class="fragment">Basic knowledge of Git</li>
+                        <li class="fragment">Basic knowledge of Django</li>
+                        <li class="fragment">pyenv / virtualenv</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>                    
+                        <div>
+                            <img width="50%" src="http://cdn.solertium.com/system/images/binaries/000/000/197/original/heroku-logo.jpg?1395788529">
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Some anecdotes</h2>
+                        <ul>
+                            <li>Chief architect</li>
+                            <p class="fragment">Yukihiro "Matz" Matsumoto</p>
+                            <li>Etymology</li>
+                            <p class="fragment">Hero + Haiku</p>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Why Heroku?</h2>
+                        <ol>
+                            <li class="fragment">Free host</li>
+                            <li class="fragment">Free database</span></li>
+                            <li class="fragment">Free domain</li>
+                            <li class="fragment">Free https</li>
+                            <li class="fragment">Continuous integration (CI)</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>What you'll get...</h2>
+                        <ul>
+                            <li>http<span class="fragment highlight-green">s</span>://<span class="fragment highlight-red" style="text-decoration:underline">your_project</span>.herokuapp.com</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <span class="mezzanine" style="left:350px;"></span>
+                    </section>
+                    <section>
+                        <h2>What is Mezzanine?</h2>
+                        <p class="fragment">A django-based Content Management System (CMS)</p>
+                    </section>
+                    <section>
+                        <h2>Why Mezzanine?</h2>
+                        <ul>
+                            <li class="fragment">Full-fledged</li>
+                            <li class="fragment">Community</li>
+                            <li class="fragment">Plugins</li>
+                            <li class="fragment">i18n</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>What you need?</h2>
+                        <p class="fragment">Django, nothing more</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Demo: Tipei.py blog site</h2>
+                    <h4>Link</h4>
+                    <p><a href="https://taipei-py.herokuapp.com" target="_blank">https://taipei-py.herokuapp.com</a></p>
+                    <h4>Github</h4>
+                    <p><a href="https://github.com/amigcamel/taipei.py" target="_blank">https://github.com/amigcamel/taipei.py</a></p>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                </section>
+                <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+                    <section>
+                        <h1>Let's get started!</h1>
+                    </section>
+                    <section>
+                        <h2>Install Heroku CLI</h2>
+                        <p class="snippet-title">
+                            OS X Homebrew:
+                        </p>
+                        <pre><code class="hljs bash" data-trim>
+brew install heroku
+                        </code></pre>
+                        <p class="snippet-title">
+                            Debian/Ubuntu:
+                        </p>
+                        <pre><code class="hljs bash" data-trim>
+sudo apt-get install software-properties-common
+sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install heroku
+                        </code></pre>
+                        <p class="snippet-title">Others:</p>
+                        <a style="text-align:left" href="https://devcenter.heroku.com/articles/heroku-cli#download-and-install" target="_blank">see here</a>
+                    </section>
+                    <section>
+                        <h2>Create a Heroku app</h2>
+                        <pre><code class="hljs bash">
+heroku login
+heroku create your_project
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Create a Project</h2>
+                        <pre><code class="hljs bash">
+# Install from PyPI
+pip install Mezzanine==4.2.2
+
+# Create a project
+mezzanine-project your_project
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Heroku Specifics</h2>
+                        <p class="snippet-title">
+                            Procfile
+                        </p>
+                        <pre><code class="hljs text" data-trim>
+web: gunicorn your_project.wsgi --log-file -
+                        </code></pre>
+                        <p class="snippet-title">
+                        requirements.txt
+                        </p>
+                        <pre><code class="hljs text" data-trim>
+Django==1.8.17
+Mezzanine==4.2.2
+gunicorn==19.6.0
+dj-database-url==0.4.2
+psycopg2==2.6.2
+whitenoise==3.2.3
+                        </code></pre>
+                        <p class="snippet-title">
+                            runtime.txt
+                        </p>
+                        <pre><code class="hljs text" data-trim>
+python-3.5.2
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Structure</h2>
+                        <pre><code class="hljs no-highlight" style="line-height:30px;font-size:20px">
+▼ your_project
+    ▼ your_project
+        __init__.py
+        settings.py
+        local_settings.py
+        urls.py
+        wsgi.py
+    ▶ static
+    Procfile
+    requirements.txt
+    runtime.txt
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Set up Django SECRET_KEY</h2>
+                        <p class="snippet-title">your_project/settings.py</p>
+                        <pre><code class="hljs python">
+SECRET_KEY = os.environ.get('SECRET_KEY')
+                        </code></pre>
+                        <pre><code class="hljs bash">
+heroku config:set SECRET_KEY="your_django_secret_key"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Database for Heroku</h2>
+                        <code>your_project/settings.py</code>
+
+                        <pre><code class="hljs python" contenteditable>
+import dj_database_url
+
+
+DATABASES: {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        ...
+    }
+}
+
+DATABASES['default'] = (
+    dj_database_url.config() or
+    DATABASES['default']
+)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Static files for Heroku</h2>
+                        <code>your_project/wsgi.py</code>
+                        <pre><code class="hljs python" data-trim>
+
+# put this line at the bottom
+
+from whitenoise.django import DjangoWhiteNoise
+application = DjangoWhiteNoise(application)
+                        </code></pre>
+                        <code>your_project/settings.py</code>
+                        <pre><code class="hljs python" data-trim>
+MIDDLEWARE_CLASSES = (
+    ...
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Add ALLOWED_HOSTS</h2>
+                        <code>your_project/settings.py</code>
+                        <pre><code class="hljs python">
+ALLOWED_HOSTS = [
+    'localhost',
+    'your_project.herokuapp.com',
+]
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#3090C7" data-background-transition="zoom">
+                    <section>                    
+                        <h1>Deploying</h1>
+                    </section>
+                    <section>
+                        <h2>Create a Git container</h2>
+                        <pre><code class="hljs bash">
+git init
+heroku git:remote -a your_project
+git add -A .
+git commit -m 'first commit'
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Publishing</h2>
+                        <pre><code class="hljs bash">
+# push your project
+git push heroku master
+
+# create db
+heroku run python manage.py createdb
+
+# db migration
+heroku run python manage.py migrate
+
+# deploy
+heroku ps:scale web=1
+                        </code></pre>
+                    </section>
+                    <section>                    
+                        <h2>Debugging</h2>
+                        <pre><code class="hljs bash">
+heroku logs -t
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (1)</h1>
+                        <h4>Change Site Name and Tagline</h4>
+                    </section>
+                    <section>
+                        <p class="snippet-title">
+                            settings.py    
+                        </p>
+                        <pre><code class="hljs python">
+SITE_NAME = 'Taipei.py'
+SITE_TAGLINE = '好聚會，不加入？'
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (2)</h1>
+                        <h4>Localization</h4>
+                    </section>
+                    <section>
+<!--
+                        <p class="snippet-title">
+                            Install dependency
+                        </p>
+                        <pre><code class="hljs bash" data-trim>
+pip install django-modeltranslation
+pip freeze | grep django-modeltranslation >> requirements.txt
+                        </code></pre>
+-->
+                        <p class="snippet-title">
+                            Modify <code>settings.py</code>
+                        </p>
+                        <pre><code class="hljs python" data-trim>
+LANGUAGE_CODE = "zh-tw"
+
+LANGUAGES = (
+    ('zh-tw', _('繁體中文')),
+)
+
+USE_I18N = True
+
+MIDDLEWARE_CLASSES = (
+    ...
+    'django.middleware.locale.LocaleMiddleware',
+    ...
+)
+                        </code></pre>
+                        <p class="snippet-title">
+                            DB migration
+                        </p>
+                        <pre><code class="hljs bash" data-trim>
+heroku run python manage.py makemigrations
+heroku run python manage.py migrate                                
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (3)</h1>
+                        <h4>Markdown Editor</h4>
+                    </section>
+                    <section>
+                        <p class="snippet-title">
+                            pip install
+                        </p>
+                        <pre><code class="hljs python">
+pip install mezzanine-pagedown
+pip freeze | grep mezzanine-pagedown >> requirements.txt
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p class="snippet-title">
+                            settings.py
+                        </p>
+                        <pre><code class="hljs python" data-trim>
+INSTALLED_APPS = [
+    ...
+    'mezzanine_pagedown',
+]
+
+RICHTEXT_WIDGET_CLASS = 'mezzanine_pagedown.widgets.PageDownWidget'
+PAGEDOWN_SERVER_SIDE_PREVIEW = True
+RICHTEXT_FILTER_LEVEL = 3
+RICHTEXT_FILTERS = [
+    'mezzanine_pagedown.filters.extra'
+]
+                        </code></pre>
+                        <p class="snippet-title">
+                            urls.py
+                        </p>
+                        <pre><code class="hljs python" data-trim>
+import mezzanine_pagedown.urls
+
+urlpatterns = i18n_patterns(
+    ...
+    url("^pagedown/", include(mezzanine_pagedown.urls)),
+)
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (4)</h1>
+                        <h4>Google Analytics Integration</h4>
+                    </section>
+                    <section>
+                        <h3>Be sure to have this...</h3>
+                        <p class="snippet-title">
+                            base.html
+                        </p>
+                        <pre><code class="hljs django">
+{% block footer_js %}
+    {% include "includes/footer_scripts.html" %}
+{% endblock %}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>You can set it here...</h3>
+                        <p class="snippet-title">
+                            settings.py
+                        </p>
+                        <pre><code class="hljs python">
+GOOGLE_ANALYTICS_ID = 'UA-12345678-9'
+                        </code></pre>
+                        <h3>or here...</h3>
+                        <a href="http://yourdomain/admin/conf/setting/"></a>
+                        <h5>admin > settings > Miscellaneous > Google Analytics ID</h5>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (5)</h1>
+                        <h4>Blog-only Site</h4>
+                    </section>
+                    <section>
+                        <p class="snippet-title">
+                            urls.py
+                        </p>
+                        <pre><code class="hljs python">
+import mezzanine.blog.views
+
+urlpatterns += [
+    ...
+    # url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    ...
+    url("^$", mezzanine.blog.views.blog_post_list, name="home"),
+]
+                        </code></pre>
+                        <p class="snippet-title">
+                            settings.py
+                        </p>
+                        <pre><code class="hljs python">
+BLOG_SLUG = ''
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <section>
+                        <h1>Customization (6)</h1>
+                        <h4>Override templates</h4>
+                    </section>
+                    <section>
+                        <h2>Override templates</h2>
+                        <p class="snippet-title">
+                            Collect all templates: 
+                        </p>
+                        <pre><code class="hljs bash">
+python manage.py collecttemplates
+                        </code></pre>
+                        <p class="snippet-title">
+                            Collect specific templates:
+                        </p>
+                        <pre><code class="hljs bash">
+python manage.py collecttemplates [-t template_name]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Example</h2>
+                        <ol>
+                            <li>Remove cartridge for all pages</li>
+                            <li>Show right panel within blog pages only</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <code>templates/base.html</code>
+                        <pre><code class="hljs django" data-trim style="font-size:12px;line-height:20px;">
+{% if request.path|slice:":5" == '/blog' %}
+    <div class="col-md-3 right">
+        {% comment %}
+            {% nevercache %}
+            {% include "includes/language_selector.html" %}
+            {% include "includes/user_panel.html" %}
+            {% endnevercache %}
+        {% endcomment %}
+        <div class="panel panel-default">
+        <div class="panel-body">
+        {% block right_panel %}
+        {% ifinstalled mezzanine.twitter %}
+        {% include "twitter/tweets.html" %}
+        {% endifinstalled %}
+        {% endblock %}
+        </div>
+        </div>
+    </div>
+{% endif %}
+                        </code></pre>
+                    </section>
+                </section>
+                <section data-background="http://i.giphy.com/l2JegsM5nRRxuf9II.gif">
+                    <h2>Thank you</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-91846715-1', 'auto');
+        ga('send', 'pageview');
+        </script>
+    </body>
 </html>
