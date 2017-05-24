@@ -240,7 +240,8 @@
                     <section>
                         <h3>Properties (cont.)</h3>
                         <p>In essence, they are identical.</p>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 class PyQuery(list):
 
     # ...
@@ -251,7 +252,8 @@ class PyQuery(list):
 
     def size(self):
         return len(self)
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Attributes</h3>
@@ -335,7 +337,8 @@ class PyQuery(list):
                     </section>
                     <section>
                         <h3>PyQuery Specifics (cont.)</h3>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 url = 'https://aji.tw'
 
 PyQuery(url).make_links_absolute()
@@ -344,8 +347,8 @@ PyQuery(url).make_links_absolute()
 import requests
 resp = requests.get(url)
 dom = PyQuery(url).make_links_absolute(url)
-
-                        </code></pre>
+```
+                        </div>
                     </section>
                 </section>
                 <section>
@@ -366,7 +369,8 @@ Beautiful Soup is not an HTTP client. You should probably use an HTTP client lik
                     </section>
                     <section>
                         <h3>Find First Element</h3>
-                        <pre><code class="hljs python">
+                        <div data-markdown>
+```python
 # BeautifulSoup
 soup.find(class_='r-ent').text
 soup.select('.r-ent')[0].text
@@ -374,11 +378,13 @@ soup.select('.r-ent')[0].text
 # PyQuery
 dom('.r-ent:first').text()
 dom('.r-ent').eq(0).text()
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Iterate Elements and Get Attributes</h3>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 # BeautifulSoup
 [i.find('a').attrs['href'] for i in soup.find_all(class_='r-ent')]
 [i.attrs['href'] for i in soup.select('.r-ent a')]
@@ -387,7 +393,8 @@ dom('.r-ent').eq(0).text()
 [i.attr('href') for i in dom('.r-ent a').items()]  # list comprehension
 dom('.r-ent a').map(lambda i, e: PyQuery(e).attr('href'))  # PyQuery.map
 dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html.HtmlElement.attrib
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Select Text Without Tag</h3>
@@ -397,14 +404,16 @@ dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html
                     </section>
                     <section>
                         <h3>Select Text Without Tag (cont.)</h3>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 # BeautifulSoup
 soup.find_all(class_='article-metaline')[-1].nextSibling
 
 # PyQuery
 dom('#main-content').remove('*').text()
 dom('#main-content').clone().remove('*').text()
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Find All Elements Before Certain Element</h3>
@@ -414,7 +423,8 @@ dom('#main-content').clone().remove('*').text()
                     </section>
                     <section>
                         <h3>Find All Elements Before Certain Element (cont.)</h3>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 # BeautifulSoup
 eles = []
 for ele in soup.find_all(attrs={'class': ['r-ent', 'r-list-sep']}):
@@ -425,7 +435,8 @@ for ele in soup.find_all(attrs={'class': ['r-ent', 'r-list-sep']}):
 
 # PyQuery
 eles = dom('.r-list-sep').prev_all('.r-ent')
-                        </code></pre>
+```
+                        </div>
                     </section>
                 </section>
                 <section>
@@ -589,14 +600,17 @@ if __name__ == '__main__':
                     <section>
                         <h3>Selenium + PyQuery</h3>
                         <p>Built-in css selector kinda sucks...</p>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 find_element_by_css_selector
 find_elements_by_css_selector
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h4>Directly use JQueryTranslator</h4>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 from selenium.webdriver import Firefox
 from pyquery.cssselectpatch import JQueryTranslator
 
@@ -609,11 +623,7 @@ class FirefoxPlus(Firefox):
     def find_elements_by_pyquery(self, css):
         xpath = JQueryTranslator().css_to_xpath(css)
         return self.find_elements_by_xpath(xpath)
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h4>Directly use JQueryTranslator (cont.)</h4>
-                        <pre><code class="hljs python" data-trim>
+
 if __name__ == '__main__':
     browser = FirefoxPlus()
 
@@ -622,11 +632,13 @@ if __name__ == '__main__':
 
     # click "我同意，我已年滿十八歲" button
     browser.find_element_by_pyquery('button[name="yes"]').click()
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h4>Add PyQuery object to webdriver</h4>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 from selenium.webdriver import Firefox
 from pyquery import PyQuery
 
@@ -640,17 +652,20 @@ if __name__ == '__main__':
     browser = FirefoxPlus()
     browser.get('http://ptt.cc/bbs/Gossiping/')
     print(browser.dom)
-</code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Scrapy + PyQuery</h3>
                         <p>
                             If you don't like Scrapy's ad hoc CSS pseudo classes...
                         </p>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 response.css('.r-ent::text').extract()
 response.css('.r-ent::attr(href)').extract()
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h4>Set PyQuery object to Scrapy response</h4>
@@ -665,12 +680,14 @@ class PyQueryMiddleware:
         return response
                         </code></pre>
                         <pre>settings.py</pre>
-                        <pre><code class="hljs python" data-trim>
+                        <div data-markdown>
+```python
 DOWNLOADER_MIDDLEWARES = {
     # ...
     'someproject.middlewares.PyQueryMiddleware': 543,
 }
-                        </code></pre>
+```
+                        </div>
                     </section>
                 </section>
                 <section data-background="https://i.giphy.com/3o6Zt3AC93PIPAdQ9a.gif">
