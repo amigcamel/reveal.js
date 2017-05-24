@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/theme/night.css">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="https://cdn.rawgit.com/isagalaev/highlight.js/848a00c8/src/styles/solarized-dark.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow-night-bright.min.css">
 
         <!-- Printing and PDF exports -->
         <script>
@@ -26,6 +26,37 @@
             background: none !important;
             box-shadow: none !important;
         }
+        pre {
+            box-shadow: none !important;
+        }
+        .tags {
+            list-style: none;
+            margin: 0;
+            overflow: hidden; 
+            padding: 0;
+        }
+
+        .tags li {
+            font-size: 24px;
+            font-family: monospace;
+            background: #333333;
+            border-radius: 8px;
+            color: #fff;
+            display: inline-block;
+            height: 40px !important;
+            line-height: 30px !important;
+            padding: 10px 10px 0 10px !important;
+            /*position: relative;*/
+            opacity: 0.7 !important;
+            margin: 0 10px 10px 0 !important;  
+        }
+        .yellow {
+            color: yellow !important;
+        }
+        .reveal pre code {
+            border-radius: 10px;
+            opacity: 0.7;
+        }
         </style>
     </head>
     <body>
@@ -36,16 +67,16 @@
                     <h1>pyquery</h1>
                     <p>
                         <small>
-                            Presented by <a href="http://aji.tw">劉純睿</a>
+                            Presented by <a href="https://aji.tw">劉純睿</a>
                             a.k.a 
-                            <a href="http://aji.tw">阿吉</a>
+                            <a href="https://aji.tw">阿吉</a>
                         </small>
                     </p>
                 </section>
                 <section data-background="img/me.jpg">
-                    <h2>About me</h2\>
+                    <h2>About me</h2>
                     <p>
-                        <a href="http://aji.tw" target="_blank" style="color:black;font-weight:bold">aji.tw</a>
+                        <a href="https://aji.tw" target="_blank" style="color:black;font-weight:bold">aji.tw</a>
                     </p>
                 </section>
                 <section>
@@ -74,30 +105,72 @@
                     </section>
                     <section>
                         <h2>Camel Case Alias</h2>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>next_all</td>
-                                    <td>nextAll</td>
-                                </tr>
-                                <tr>
-                                    <td>prev_all</td>
-                                    <td>prevAll</td>
-                                </tr>
-                                <tr>
-                                    <td>remove_attr</td>
-                                    <td>removeAttr</td>
-                                </tr>
-                                <tr>
-                                    <td>has_class</td>
-                                    <td>hasClass</td>
-                                </tr>
-                                <tr>
-                                    <td>add_class</td>
-                                    <td>addClass</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <pre>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>next_all</td>
+                                        <td>nextAll</td>
+                                    </tr>
+                                    <tr>
+                                        <td>prev_all</td>
+                                        <td>prevAll</td>
+                                    </tr>
+                                    <tr>
+                                        <td>remove_attr</td>
+                                        <td>removeAttr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>has_class</td>
+                                        <td>hasClass</td>
+                                    </tr>
+                                    <tr>
+                                        <td>add_class</td>
+                                        <td>addClass</td>
+                                    </tr>
+                                    <tr>
+                                        <td>remove_class</td>
+                                        <td>removeClass</td>
+                                    </tr>
+                                    <tr>
+                                        <td>toggle_class</td>
+                                        <td>toggleClass</td>
+                                    </tr>
+                                    <tr>
+                                        <td>outer_html</td>
+                                        <td>outerHtml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>append_to</td>
+                                        <td>appendTo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>prepend_to</td>
+                                        <td>prependTo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>insert_after</td>
+                                        <td>insertAfter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>insert_before</td>
+                                        <td>insertBefore</td>
+                                    </tr>
+                                    <tr>
+                                        <td>wrap_all</td>
+                                        <td>wrapAll</td>
+                                    </tr>
+                                    <tr>
+                                        <td>replace_with</td>
+                                        <td>replaceWith</td>
+                                    </tr>
+                                    <tr>
+                                        <td>replace_all</td>
+                                        <td>replaceAll</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </pre>
                     </section>
                     <section>
                         <h3>Resource</h3>
@@ -122,6 +195,158 @@
                     <section>
                         <h1>The Basics</h1>
                     </section>
+                    <section>
+                        <h2>Categories</h2>
+                        <ol>
+                            <li>Traversing</li>
+                            <li>Properties</li>
+                            <li>Attributes</li>
+                            <li>CSS</li>
+                            <li>HTML</li>
+                            <li>Manipulating</li>
+                            <li><b>pyquery specifics</b></li>
+                        </ol> 
+                    </section>
+                    <section>
+                        <h3>Traversing</h3>
+                        <ul class="tags">                            
+                            <li>.parent</li>
+                            <li>.prev</li>
+                            <li>.next</li>
+                            <li>.next_all</li>
+                            <li>.prev_all</li>
+                            <li>.siblings</li>
+                            <li>.parents</li>
+                            <li>.children</li>
+                            <li>.closest</li>
+                            <li>.contents</li>
+                            <li>.filter</li>
+                            <li class="yellow">.not_</li>
+                            <li class="yellow">.is_</li>
+                            <li>.find</li>
+                            <li>.eq</li>
+                            <li>.each</li>
+                            <li>.map</li>
+                            <li>.end</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Properties</h3>
+                        <ul class="tags">
+                            <li>.length</li>
+                            <li>.size</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Properties (cont.)</h3>
+                        <p>In essence, they are identical.</p>
+                        <pre><code class="hljs python" data-trim>
+class PyQuery(list):
+
+    # ...
+
+    @property
+    def length(self):
+        return len(self)
+
+    def size(self):
+        return len(self)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Attributes</h3>
+                        <ul class="tags">
+                            <li>.attr</li>
+                            <li>.remove_attr</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>CSS</h3>
+                        <ul class="tags">
+                            <li>.height</li>
+                            <li>.width</li>
+                            <li>.has_class</li>
+                            <li>.add_class</li>
+                            <li>.remove_class</li>
+                            <li>.toggle_class</li>
+                            <li>.css</li>
+                            <li>.hide</li>
+                            <li>.show</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>HTML</h3>
+                        <ul class="tags">
+                            <li>.val</li>
+                            <li>.html</li>
+                            <li class="yellow">.outer_html</li>
+                            <li>.text</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>HTML (cont.)</h3>
+                        <ul class="tags">
+                            <li>.outer_html</li>
+                        </ul>
+                        <pre><code class="hljs bash" data-trim>
+>>> html = '''
+<div id="aji">
+    <p>Hello, PYCON TW!</p>
+</div>
+'''
+>>> dom = PyQuery(html)
+>>> print(dom.html())
+
+    <p>Hello, PYCON TW!</p>
+
+>>> print(dom.outer_html())
+<div id="aji">
+    <p>Hello, PYCON TW!</p>
+</div>
+                        </code></pre>                        
+                    </section>
+                    <section>
+                        <h3>Manipulating</h3>
+                        <ul class="tags">
+                            <li>.append</li>
+                            <li>.append_to</li>
+                            <li>.prepend</li>
+                            <li>.prepend_to</li>
+                            <li>.after</li>
+                            <li>.insert_after</li>
+                            <li>.before</li>
+                            <li>.insert_before</li>
+                            <li>.wrap</li>
+                            <li>.wrap_all</li>
+                            <li>.replace_with</li>
+                            <li>.replace_all</li>
+                            <li>.clone</li>
+                            <li>.empty</li>
+                            <li>.remove</li>
+                            <li>.Fn</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>PyQuery Specifics</h3>
+                        <ul class="tags">
+                           <li>.base_url</li> 
+                           <li>.make_links_absolute</li> 
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>PyQuery Specifics (cont.)</h3>
+                        <pre><code class="hljs python" data-trim>
+url = 'https://aji.tw'
+
+PyQuery(url).make_links_absolute()
+
+# or
+import requests
+resp = requests.get(url)
+dom = PyQuery(url).make_links_absolute(url)
+
+                        </code></pre>
+                    </section>
                 </section>
                 <section>
                     <section id="comparison">
@@ -131,7 +356,7 @@
                     </section>          
                     <section>
                         <h3>Built-in URL Opener</h3>
-                        <pre><code class="hljs python" data-trim>
+                        <pre><code class="hljs bash">
 >>> url = 'https://www.ptt.cc/bbs/joke/index.html'
 >>> PyQuery(url)
 [html]
@@ -152,14 +377,16 @@ dom('.r-ent').eq(0).text()
                         </code></pre>
                     </section>
                     <section>
-                        <h2>Iterate Elements and Get Attributes</h2>
+                        <h3>Iterate Elements and Get Attributes</h3>
                         <pre><code class="hljs python" data-trim>
 # BeautifulSoup
 [i.find('a').attrs['href'] for i in soup.find_all(class_='r-ent')]
 [i.attrs['href'] for i in soup.select('.r-ent a')]
 
 # PyQuery
-[i.attr('href') for i in dom('.r-ent a').items()]
+[i.attr('href') for i in dom('.r-ent a').items()]  # list comprehension
+dom('.r-ent a').map(lambda i, e: PyQuery(e).attr('href'))  # PyQuery.map
+dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html.HtmlElement.attrib
                         </code></pre>
                     </section>
                     <section>
@@ -169,6 +396,7 @@ dom('.r-ent').eq(0).text()
                     <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
                     </section>
                     <section>
+                        <h3>Select Text Without Tag (cont.)</h3>
                         <pre><code class="hljs python" data-trim>
 # BeautifulSoup
 soup.find_all(class_='article-metaline')[-1].nextSibling
@@ -185,6 +413,7 @@ dom('#main-content').clone().remove('*').text()
                     <section data-background-iframe="https://www.ptt.cc/bbs/joke/index.html">
                     </section>
                     <section>
+                        <h3>Find All Elements Before Certain Element (cont.)</h3>
                         <pre><code class="hljs python" data-trim>
 # BeautifulSoup
 eles = []
@@ -200,7 +429,158 @@ eles = dom('.r-list-sep').prev_all('.r-ent')
                     </section>
                 </section>
                 <section>
-                    <h1>Diggin Deeper</h1>
+                    <section>
+                         <h1>Diggin Deeper</h1>
+                    </section>
+                    <section>
+                        <h3>More about URL Opener</h3>
+                        <div data-markdown>
+```python
+from pyquery import PyQuery
+
+# These are equivalent
+PyQuery(url='https://aji.tw')
+PyQuery('https://aji.tw')
+
+# add cookies
+PyQuery(
+    'https://www.ptt.cc/bbs/Gossiping/index.html',
+    cookies=dict(over18='1'),
+)
+
+# add headers
+PyQuery(
+    'https://aji.tw',
+    headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8',
+    },
+```
+                        </div>
+                    </section>
+                    <section>
+                        <h3>More about URL Opener (cont.)</h3>
+                        <small data-markdown>`PyQuery` allows you to add a custom url opener by passing `opener` as an argument.</small>
+                        <div data-markdown>
+```python
+from pyquery import PyQuery
+from selenium.webdriver import Firefox
+
+def selenium_opener(url):
+    driver = Firefox()
+    driver.get(url)
+    html = driver.page_source
+    driver.quit()
+    return html
+    
+if __name__ == '__main__':
+    PyQuery('https://aji.tw', opener=selenium_opener)
+```
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Custom Function</h3>
+                        <small data-markdown>You can do this by sub-classing `PyQuery`</small>
+
+                        <div data-markdown>
+```python                        
+from pyquery import PyQuery
+
+class PyQueryPlus(PyQuery):
+    
+    def exists(self):
+        return True if len(self) else False
+```
+                        </div>
+
+                    </section>
+                    <section>
+                        <h3>Custom Function (cont.)</h3>
+                        <small>Or, you can do this in a more jquery-like way.</small>
+                        <div data-markdown>
+```python
+from pyqury import PyQuery
+
+# using lambda (more succinct)
+PyQuery.fn.exists = lambda: True if len(this) else False
+
+# using def (more readable)
+def exists():
+    return True if len(this) else False
+    
+PyQuery.fn.exists = exists
+```
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Custom Pseudo-element Parser</h3>
+                        <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
+                        <div data-markdown>
+```python
+from pyquery import PyQuery
+from pyquery.cssselectpatch import JQueryTranslator
+
+class JQueryTranslatorPlus(JQueryTranslator):
+
+    def xpath_second_pseudo(self, xpath):
+        xpath.add_post_condition('position() = 2')
+        return xpath
+
+class PyQueryPlus(PyQuery):
+    _translator_class = JQueryTranslatorPlus
+
+if __name__ == '__main__':
+    dom = PyQueryPlus('https://aji.tw')
+    dom('h2:second')
+```
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Monkey-patching</h3>
+                        <small data-markdown>`:not` is not being parsed correctly, so a monkey-patch can be applied.</small>
+                        <div data-markdown>
+```python
+import re
+
+from pyquery import PyQuery
+from pyquery.cssselectpatch import JQueryTranslator
+
+class JQueryTranslatorPlus(JQueryTranslator):
+
+    def css_to_xpath(self, *args, **kwargs):
+        target = None
+        pat = re.search('(.+):not\(:(.+)\)', args[0])
+        if pat:
+            node, pseudo = map(pat.group, (1, 2))
+            print(pseudo)
+            if pseudo == 'first':
+                target = 1
+            elif pseudo == 'last':
+                target = 'last()'
+            else:
+                pseudo_pat = re.search('(nth-of-type|eq)\((\d+)\)', pseudo)
+                if pseudo_pat:
+                    pseudo_func, num = map(pseudo_pat.group, (1, 2))
+                    num = int(num)
+                    target = num + 1 if pseudo_func == 'eq' else num
+        if target:
+            xpath = super().css_to_xpath(node) + '[position() != {}]'.format(target)
+        else:
+            xpath = super().css_to_xpath(*args, **kwargs)
+        return xpath
+
+class PyQueryPlus(PyQuery):
+
+    _translator_class = JQueryTranslatorPlus
+    
+if __name__ == '__main__':
+    dom = PyQueryPlus('http://aji.tw')
+    dom('h2:not(:first)')
+    dom('h2:not(:last)')
+    dom('h2:not(:eq(0))')
+    dom('h2:not(:nth-of-type(1))')
+```
+                        </div>
+                    </section>
                 </section>
                 <section>
                     <section>
@@ -288,7 +668,7 @@ class PyQueryMiddleware:
                         <pre><code class="hljs python" data-trim>
 DOWNLOADER_MIDDLEWARES = {
     # ...
-    'rent591.middlewares.PyQueryMiddleware': 543,
+    'someproject.middlewares.PyQueryMiddleware': 543,
 }
                         </code></pre>
                     </section>
@@ -314,7 +694,7 @@ DOWNLOADER_MIDDLEWARES = {
                     { src: 'plugin/notes/notes.js', async: true },
                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
                 ],
-                parallaxBackgroundImage: 'http://www.allmacwallpaper.com/get/Retina-MacBook-Pro-15-inch-wallpapers/Aurora-Borealis-2880x1800/9336-8.jpg',
+                parallaxBackgroundImage: './img/9336-8.jpg',
                 parallaxBackgroundHorizontal: 200,
                 parallaxBackgroundVertical: 50
 
