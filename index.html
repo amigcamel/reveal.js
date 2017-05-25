@@ -709,11 +709,18 @@ DOWNLOADER_MIDDLEWARES = {
                     { src: 'plugin/markdown/marked.js' },
                     { src: 'plugin/markdown/markdown.js' },
                     { src: 'plugin/notes/notes.js', async: true },
-                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'https://cdn.rawgit.com/denehyg/reveal.js-menu/master/menu.js'}
                 ],
                 parallaxBackgroundImage: './img/9336-8.jpg',
                 parallaxBackgroundHorizontal: 200,
-                parallaxBackgroundVertical: 50
+                parallaxBackgroundVertical: 50,
+                menu: {
+                    numbers: true,
+                    markers: true,
+                    themes: false,
+                    transitions: false
+                }
 
             });
         </script>
