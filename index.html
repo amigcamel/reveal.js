@@ -325,7 +325,7 @@ class PyQuery(list):
                             <li>.clone</li>
                             <li>.empty</li>
                             <li>.remove</li>
-                            <li>.Fn</li>
+                            <li class="yellow">.Fn</li>
                         </ul>
                     </section>
                     <section>
@@ -341,12 +341,12 @@ class PyQuery(list):
 ```python
 url = 'https://aji.tw'
 
-PyQuery(url).make_links_absolute()
+dom = PyQuery(url).make_links_absolute()
 
 # or
 import requests
 resp = requests.get(url)
-dom = PyQuery(url).make_links_absolute(url)
+dom = PyQuery(resp.text).make_links_absolute(url)
 ```
                         </div>
                     </section>
