@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/night.css">
 
+        <link rel="stylesheet" href="plugin/title-footer/title-footer.css">
+
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow-night-bright.min.css">
 
@@ -56,6 +58,9 @@
         .reveal pre code {
             border-radius: 10px;
             opacity: 0.7;
+        }
+        footer:first {
+            background: red !important;
         }
         </style>
     </head>
@@ -599,11 +604,14 @@ if __name__ == '__main__':
                     </section>
                     <section>
                         <h3>Selenium + PyQuery</h3>
-                        <p>Built-in css selector kinda sucks...</p>
+                        <small data-markdown>`selenium` does not support selectors with pseudo-elements very well</small>
                         <div data-markdown>
 ```python
-find_element_by_css_selector
-find_elements_by_css_selector
+from selenium import Firefox
+
+firefox = Firefox()
+firefox.find_element_by_css_selector
+firefox.find_elements</u>_by_css_selector
 ```
                         </div>
                     </section>
@@ -710,7 +718,8 @@ DOWNLOADER_MIDDLEWARES = {
                     { src: 'plugin/markdown/markdown.js' },
                     { src: 'plugin/notes/notes.js', async: true },
                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'https://cdn.rawgit.com/denehyg/reveal.js-menu/master/menu.js'}
+                    { src: 'https://cdn.rawgit.com/denehyg/reveal.js-menu/master/menu.js'},
+                    { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
                 ],
                 parallaxBackgroundImage: './img/9336-8.jpg',
                 parallaxBackgroundHorizontal: 200,
@@ -721,7 +730,14 @@ DOWNLOADER_MIDDLEWARES = {
                     themes: false,
                     transitions: false
                 }
-
+            });
+        </script>
+        <script>
+            document.querySelectorAll('section > h1, section > h2, section > h3').forEach(function(e) {
+                if (!e.parentElement.getAttribute('id')) {
+                    var slug = e.innerText.toLowerCase().replace(/[_\s-]/g, '-').replace(/[+().]/g, '').replace('--', '-');
+                    e.parentElement.setAttribute('id', slug);   
+                }
             });
         </script>
     </body>
