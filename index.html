@@ -552,7 +552,7 @@ if __name__ == '__main__':
                     </section>
                     <section>
                         <h3>Monkey-patching</h3>
-                        <small data-markdown>`:not` is not being parsed correctly, so a monkey-patch can be applied.</small>
+                        <small data-markdown>`:not` is being parsed incorrectly, so a monkey-patch can be applied.</small>
                         <div data-markdown>
 ```python
 import re
@@ -616,7 +616,8 @@ firefox.find_elements</u>_by_css_selector
                         </div>
                     </section>
                     <section>
-                        <h4>Directly use JQueryTranslator</h4>
+                        <h3>Selenium + PyQuery (cont.)</h3>
+                        <small data-markdown>Directly use `JQueryTranslator`</small>
                         <div data-markdown>
 ```python
 from selenium.webdriver import Firefox
@@ -644,7 +645,8 @@ if __name__ == '__main__':
                         </div>
                     </section>
                     <section>
-                        <h4>Add PyQuery object to webdriver</h4>
+                        <h3>Selenium + PyQuery (cont.)</h3>
+                        <small data-markdown>Add `PyQuery` object to `webdriver`</small data-markdown>
                         <div data-markdown>
 ```python
 from selenium.webdriver import Firefox
@@ -665,9 +667,7 @@ if __name__ == '__main__':
                     </section>
                     <section>
                         <h3>Scrapy + PyQuery</h3>
-                        <p>
-                            If you don't like Scrapy's ad hoc CSS pseudo classes...
-                        </p>
+                        <small>If you don't like Scrapy's ad hoc CSS pseudo classes...</small>
                         <div data-markdown>
 ```python
 response.css('.r-ent::text').extract()
@@ -676,7 +676,8 @@ response.css('.r-ent::attr(href)').extract()
                         </div>
                     </section>
                     <section>
-                        <h4>Set PyQuery object to Scrapy response</h4>
+                        <h3>Scrapy + PyQuery (cont.)</h3>
+                        <small data-markdown>You can set `PyQuery` object to `Scrapy` response</small>
                         <pre>middlewares.py</pre>
                         <pre><code class="hljs python" data-trim>
 from pyquery import PyQuery
