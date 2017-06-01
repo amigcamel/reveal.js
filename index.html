@@ -363,13 +363,19 @@ dom = PyQuery(resp.text).make_links_absolute(url)
                     </section>          
                     <section>
                         <h3>Built-in URL Opener</h3>
-                        <pre><code class="hljs bash">
+                        <div data-markdown>
+```bash
 >>> url = 'https://www.ptt.cc/bbs/joke/index.html'
+
+# pyquery
 >>> PyQuery(url)
 [html]
+
+# BeautifulSoup
 >>> BeautifulSoup(url)
 Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
-                        </code></pre>
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Find First Element</h3>
@@ -383,6 +389,28 @@ soup.select('.r-ent')[0].text
 dom('.r-ent:first').text()
 dom('.r-ent').eq(0).text()
 ```
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Pseudo-element Support</h3>
+                        <small data-markdown>Find the text `First`</small>
+                        <div data-markdown>
+```html
+&lt;ul&gt;
+    &lt;li&gt;First&lt;/li&gt;
+    &lt;li&gt;Second&lt;/li&gt;
+    &lt;li&gt;Third&lt;/li&gt;
+&lt;/ul&gt;
+```
+                        </div>
+                        <div data-markdown style="font-size:26px;">
+| CSS Selector                | PyQuery  | BeautifulSoup |
+|-----------------------------|----------|---------------|
+| `ul > li:nth-of-type(1)`    |    😄    |       😄      |
+| `ul > li:first`             |    😄    |       😢      |
+| `ul > li:eq(0)`             |    😄    |       😢      |
+| `ul > li:contains("First")` |    😄    |       😢      |
+
                         </div>
                     </section>
                     <section>
@@ -402,7 +430,22 @@ dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html
                     </section>
                     <section>
                         <h3>Select Text Without Tag</h3>
-                        <small>Example: https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html</small>
+                        <div data-markdown>
+```html
+&lt;div id="main-content" class="bbs-screen bbs-content"&gt;
+    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
+    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
+    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
+    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
+    助人為快樂之本溫泉 --
+    &lt;span class="f2"&gt;...&lt;/span&gt;
+    &lt;span class="f2"&gt;...&lt;/span&gt;
+    &lt;div class="push"&gt;...&lt;/div&gt;
+    &lt;div class="push"&gt;...&lt;/div&gt;
+    &lt;div class="push"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+```
+                        </div>
                     </section>
                     <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
                     </section>
@@ -421,7 +464,16 @@ dom('#main-content').clone().remove('*').text()
                     </section>
                     <section>
                         <h3>Find All Elements Before Certain Element</h3>
-                        <small>Example: https://www.ptt.cc/bbs/joke/index.html</small>
+                        <div data-markdown>
+```html
+&lt;class="r-ent"&gt;...&lt;/div&gt;
+&lt;class="r-ent"&gt;...&lt;/div&gt;
+&lt;class="r-ent"&gt;...&lt;/div&gt;
+&lt;class="r-list-sep"&gt;...&lt;/div&gt;
+&lt;class="r-ent"&gt;...&lt;/div&gt;
+
+```
+                        </div>
                     </section>
                     <section data-background-iframe="https://www.ptt.cc/bbs/joke/index.html">
                     </section>
@@ -745,6 +797,15 @@ DOWNLOADER_MIDDLEWARES = {
                     var slug = e.innerText.toLowerCase().replace(/[_\s-]/g, '-').replace(/[+().]/g, '').replace('--', '-');
                     e.parentElement.setAttribute('id', slug);   
                 }
+            });
+            Reveal.addEventListener('slidechanged', function(event) {               
+                if (event.currentSlide.getAttribute('data-background-iframe')) {
+                    document.querySelector('.reveal > .backgrounds').style['z-index'] = 1;
+                    console.log('z-index set to 1');
+                } else {
+                    document.querySelector('.reveal > .backgrounds').style['z-index'] = 0;
+                    console.log('z-index set to 0');
+                }                  
             });
         </script>
     </body>
