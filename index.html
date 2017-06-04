@@ -34,7 +34,7 @@
         .tags {
             list-style: none;
             margin: 0;
-            overflow: hidden; 
+            overflow: hidden;
             padding: 0;
         }
 
@@ -50,7 +50,7 @@
             padding: 10px 10px 0 10px !important;
             /*position: relative;*/
             opacity: 0.7 !important;
-            margin: 0 10px 10px 0 !important;  
+            margin: 0 10px 10px 0 !important;
         }
         .yellow {
             color: yellow !important;
@@ -61,6 +61,13 @@
         }
         footer:first {
             background: red !important;
+        }
+        .comp-table {
+            font-size: 26px !important;
+        }
+        .comp-table table td:nth-of-type(2),
+        .comp-table table td:nth-of-type(3) {
+            text-align: center !important;
         }
         </style>
     </head>
@@ -73,7 +80,7 @@
                     <p>
                         <small>
                             Presented by <a href="https://aji.tw">劉純睿</a>
-                            a.k.a 
+                            a.k.a
                             <a href="https://aji.tw">阿吉</a>
                         </small>
                     </p>
@@ -99,13 +106,36 @@
                         <h1>Introduction</h1>
                     </section>
                     <section>
+                        <h3>Installation</h3>
+                        <h7 data-markdown>
+                          Using `pip`
+                        </h7>
+                        <div data-markdown>
+```bash
+pip install pyquery
+```
+                        </div>
+                        <h7 data-markdown>
+                          which includes:
+                        </h7>
+                        <div data-markdown>
+```python
+lxml>=2.1
+cssselect>0.7.9
+```
+                        </div>
+                        <h7>FAQ</h7>
+                        <p data-markdown>
+                          StackOverflow: [pip install lxml error](https://stackoverflow.com/questions/5178416/pip-install-lxml-error)
+                        </p>
+                    </section>
+                    <section>
                         <h3>Performance</h3>
-                        <a href="http://lxml.de" target="_blank">
-                            <div>
-                                <img src="https://i.redditmedia.com/2YFypTbxbA_-qOSqHGm_NtiZzxWistZgcipOT6X6pg8.png?w=128&s=84f3b57c09a338cee91e0ef9da289b34" style="vertical-align:middle" />
-                                <span>lxml</span>
-                            </div>
-                        </a>
+                        <h7>Fast, because of:</h7>
+                        <div data-markdown style="padding-top:30px">
+                          + [`lxml`](http://lxml.de/performance.html): based on `libxml2`
+                          + [`libxml2`](http://xmlsoft.org): written in `C`
+                        </div>
                     </section>
                     <section>
                         <h2>Camel Case Alias</h2>
@@ -185,12 +215,12 @@
                         <p>
                             <a href="https://github.com/gawel/pyquery" target="_blank">
                                 <img
-                                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" 
+                                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png"
                                     height="100px"
                                 />
                             </a>
                         </p>
-                        <p class="fragment">
+                        <p>
                             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/JQuery_logo.svg/360px-JQuery_logo.svg.png" />
                         </p>
                     </section>
@@ -209,11 +239,11 @@
                             <li>HTML</li>
                             <li>Manipulating</li>
                             <li><b>pyquery specifics</b></li>
-                        </ol> 
+                        </ol>
                     </section>
                     <section>
                         <h3>Traversing</h3>
-                        <ul class="tags">                            
+                        <ul class="tags">
                             <li>.parent</li>
                             <li>.prev</li>
                             <li>.next</li>
@@ -294,22 +324,24 @@ class PyQuery(list):
                         <ul class="tags">
                             <li>.outer_html</li>
                         </ul>
-                        <pre><code class="hljs bash" data-trim>
->>> html = '''
-<div id="aji">
-    <p>Hello, PYCON TW!</p>
-</div>
+                        <div data-markdown>
+```bash
+&gt;&gt;&gt; html = '''
+&lt;div&gt;
+    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
+&lt;/div&gt;
 '''
->>> dom = PyQuery(html)
->>> print(dom.html())
+&gt;&gt;&gt; dom = PyQuery(html)
+&gt;&gt;&gt; print(dom.html())
 
-    <p>Hello, PYCON TW!</p>
+    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
 
->>> print(dom.outer_html())
-<div id="aji">
-    <p>Hello, PYCON TW!</p>
-</div>
-                        </code></pre>                        
+&gt;&gt;&gt; print(dom.outer_html())
+&lt;div&gt;
+    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
+&lt;/div&gt;
+```
+                        </div>
                     </section>
                     <section>
                         <h3>Manipulating</h3>
@@ -335,8 +367,8 @@ class PyQuery(list):
                     <section>
                         <h3>PyQuery Specifics</h3>
                         <ul class="tags">
-                           <li>.base_url</li> 
-                           <li>.make_links_absolute</li> 
+                           <li>.base_url</li>
+                           <li>.make_links_absolute</li>
                         </ul>
                     </section>
                     <section>
@@ -360,7 +392,7 @@ dom = PyQuery(resp.text).make_links_absolute(url)
                         <h1 style="font-size:3.0em">PyQuery</h1>
                         vs
                         <h1 style="font-size:3.0em">BeautifulSoup</h1>
-                    </section>          
+                    </section>
                     <section>
                         <h3>Built-in URL Opener</h3>
                         <div data-markdown>
@@ -381,6 +413,17 @@ Beautiful Soup is not an HTTP client. You should probably use an HTTP client lik
                         <h3>Find First Element</h3>
                         <div data-markdown>
 ```python
+html = '''
+&lt;div class="r-list-container"&gt;
+    &lt;div class="r-ent"&gt;...&lt;/div&gt;
+    &lt;div class="r-ent"&gt;...&lt;/div&gt;
+    &lt;div class="r-ent"&gt;...&lt;/div&gt;
+    &lt;div class="r-ent"&gt;...&lt;/div&gt;
+&lt;div&gt;
+'''
+soup = BeautifulSoup(html)
+dom = PyQuery(html)
+
 # BeautifulSoup
 soup.find(class_='r-ent').text
 soup.select('.r-ent')[0].text
@@ -403,7 +446,7 @@ dom('.r-ent').eq(0).text()
 &lt;/ul&gt;
 ```
                         </div>
-                        <div data-markdown style="font-size:26px;">
+                        <div class="comp-table" data-markdown>
 | CSS Selector                | PyQuery  | BeautifulSoup |
 |-----------------------------|----------|---------------|
 | `ul > li:nth-of-type(1)`    |    😄    |       😄      |
@@ -417,6 +460,22 @@ dom('.r-ent').eq(0).text()
                         <h3>Iterate Elements and Get Attributes</h3>
                         <div data-markdown>
 ```python
+html = '''
+&lt;div class="r-list-container"&gt;
+    &lt;div class="r-ent"&gt;...
+        &lt;a href="https://ptt.cc..."&gt;[耍冷] 不要用手指月亮&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="r-ent"&gt;...
+        &lt;a href="https://ptt.cc..."&gt;[笑話] 很大隻的黑狗&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="r-ent"&gt;...
+        &lt;a href="https://ptt.cc..."&gt;[猜謎] 寂寞了要找哪個單位&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="r-ent"&gt;...
+        &lt;a href="https://ptt.cc..."&gt;[猜謎] 今天是幾月幾號？&lt;/a&gt;
+    &lt;/div&gt;
+&lt;div&gt;
+'''
 # BeautifulSoup
 [i.find('a').attrs['href'] for i in soup.find_all(class_='r-ent')]
 [i.attrs['href'] for i in soup.select('.r-ent a')]
@@ -538,7 +597,7 @@ def selenium_opener(url):
     html = driver.page_source
     driver.quit()
     return html
-    
+
 if __name__ == '__main__':
     PyQuery('https://aji.tw', opener=selenium_opener)
 ```
@@ -549,11 +608,11 @@ if __name__ == '__main__':
                         <small data-markdown>You can do this by sub-classing `PyQuery`</small>
 
                         <div data-markdown>
-```python                        
+```python
 from pyquery import PyQuery
 
 class PyQueryPlus(PyQuery):
-    
+
     def exists(self):
         return True if len(self) else False
 ```
@@ -573,7 +632,7 @@ PyQuery.fn.exists = lambda: True if len(this) else False
 # using def (more readable)
 def exists():
     return True if len(this) else False
-    
+
 PyQuery.fn.exists = exists
 ```
                         </div>
@@ -638,7 +697,7 @@ class JQueryTranslatorPlus(JQueryTranslator):
 class PyQueryPlus(PyQuery):
 
     _translator_class = JQueryTranslatorPlus
-    
+
 if __name__ == '__main__':
     dom = PyQueryPlus('http://aji.tw')
     dom('h2:not(:first)')
@@ -675,11 +734,11 @@ from selenium.webdriver import Firefox
 from pyquery.cssselectpatch import JQueryTranslator
 
 class FirefoxPlus(Firefox):
-    
+
     def find_element_by_pyquery(self, css):
         xpath = JQueryTranslator().css_to_xpath(css)
         return self.find_element_by_xpath(xpath)
-    
+
     def find_elements_by_pyquery(self, css):
         xpath = JQueryTranslator().css_to_xpath(css)
         return self.find_elements_by_xpath(xpath)
@@ -735,7 +794,7 @@ from pyquery import PyQuery
 
 class PyQueryMiddleware:
 
-    def process_response(self, request, response, spider):        
+    def process_response(self, request, response, spider):
         response.dom = PyQuery(response.text)
         return response
                         </code></pre>
@@ -795,17 +854,17 @@ DOWNLOADER_MIDDLEWARES = {
             document.querySelectorAll('section > h1, section > h2, section > h3').forEach(function(e) {
                 if (!e.parentElement.getAttribute('id')) {
                     var slug = e.innerText.toLowerCase().replace(/[_\s-]/g, '-').replace(/[+().]/g, '').replace('--', '-');
-                    e.parentElement.setAttribute('id', slug);   
+                    e.parentElement.setAttribute('id', slug);
                 }
             });
-            Reveal.addEventListener('slidechanged', function(event) {               
+            Reveal.addEventListener('slidechanged', function(event) {
                 if (event.currentSlide.getAttribute('data-background-iframe')) {
                     document.querySelector('.reveal > .backgrounds').style['z-index'] = 1;
                     console.log('z-index set to 1');
                 } else {
                     document.querySelector('.reveal > .backgrounds').style['z-index'] = 0;
                     console.log('z-index set to 0');
-                }                  
+                }
             });
         </script>
     </body>
