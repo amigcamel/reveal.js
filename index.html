@@ -86,6 +86,11 @@
             width: 150px;
             vertical-align: middle;
         }
+        .reveal .slides section .fragment.highlight-current-green.current-fragment {
+            background-color: #17ff2e;
+            color: #000000;
+            opacity: 0.9;
+        }
         </style>
     </head>
     <body>
@@ -353,24 +358,22 @@ class PyQuery(list):
                         <ul class="tags">
                             <li>.outer_html</li>
                         </ul>
-                        <div data-markdown>
-```bash
+                        <pre><code class="hljs bash" data-trim data-noescape>
 &gt;&gt;&gt; html = '''
 &lt;div&gt;
     &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
 &lt;/div&gt;
 '''
 &gt;&gt;&gt; dom = PyQuery(html)
-&gt;&gt;&gt; print(dom.html())
+&gt;&gt;&gt; print(dom<span class="fragment highlight-blue">.html()</span>)
 
     &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
 
-&gt;&gt;&gt; print(dom.outer_html())
+&gt;&gt;&gt; print(dom<span class="fragment highlight-blue">.outer_html()</span>)
 &lt;div&gt;
     &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
 &lt;/div&gt;
-```
-                        </div>
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Manipulating</h3>
@@ -402,18 +405,16 @@ class PyQuery(list):
                     </section>
                     <section>
                         <h3>PyQuery Specifics (cont.)</h3>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 url = 'https://aji.tw'
 
-dom = PyQuery(url).make_links_absolute()
+dom = PyQuery(url)<span class="fragment highlight-blue">.make_links_absolute</span>()
 
 # or
 import requests
 resp = requests.get(url)
-dom = PyQuery(resp.text).make_links_absolute(url)
-```
-                        </div>
+dom = PyQuery(resp.text)<span class="fragment highlight-blue">.make_links_absolute</span>(<span class="fragment highlight-current-green">url</span>)
+                        </code></pre>
                     </section>
                 </section>
                 <section>
@@ -424,9 +425,8 @@ dom = PyQuery(resp.text).make_links_absolute(url)
                     </section>
                     <section>
                         <h3>Built-in URL Opener</h3>
-                        <div data-markdown>
-```bash
->>> url = 'https://www.ptt.cc/bbs/joke/index.html'
+                        <pre><code class="hljs bash" data-trim data-noescape>
+>>> url = 'http://www.kyle.com.tw/'
 
 # pyquery
 >>> PyQuery(url)
@@ -434,14 +434,14 @@ dom = PyQuery(resp.text).make_links_absolute(url)
 
 # BeautifulSoup
 >>> BeautifulSoup(url)
-Beautiful Soup is not an HTTP client. You should probably use an HTTP client like requests to get the document behind the URL, and feed that document to Beautiful Soup.
-```
-                        </div>
+<span class="fragment" style="color:red">Beautiful Soup is not an HTTP client. You should probably
+use an HTTP client like requests to get the document behind
+the URL, and feed that document to Beautiful Soup.</span>
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Find First Element</h3>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 html = '''
 &lt;div class="r-list-container"&gt;
     &lt;div class="r-ent"&gt;...&lt;/div&gt;
@@ -454,27 +454,24 @@ soup = BeautifulSoup(html)
 dom = PyQuery(html)
 
 # BeautifulSoup
-soup.find(class_='r-ent').text
-soup.select('.r-ent')[0].text
+soup.find(<span class="fragment highlight-current-green">class_</span>='r-ent').text
+soup.select_one('.r-ent').text
 
 # PyQuery
 dom('.r-ent:first').text()
 dom('.r-ent').eq(0).text()
-```
-                        </div>
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Pseudo-element Support</h3>
                         <small data-markdown>Find the text `First`</small>
-                        <div data-markdown>
-```html
+                        <pre><code class="hljs html" data-trim data-noescape>
 &lt;ul&gt;
-    &lt;li&gt;First&lt;/li&gt;
+    <span class="fragment highlight-current-green">&lt;li&gt;First&lt;/li&gt;</span>
     &lt;li&gt;Second&lt;/li&gt;
     &lt;li&gt;Third&lt;/li&gt;
 &lt;/ul&gt;
-```
-                        </div>
+                        </code></pre>
                         <div class="comp-table" data-markdown>
 | CSS Selector                | PyQuery  | BeautifulSoup |
 |-----------------------------|----------|---------------|
@@ -487,21 +484,20 @@ dom('.r-ent').eq(0).text()
                     </section>
                     <section>
                         <h3>Iterate Elements and Get Attributes</h3>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 html = '''
 &lt;div class="r-list-container"&gt;
     &lt;div class="r-ent"&gt;...
-        &lt;a href="https://ptt.cc..."&gt;[耍冷] 不要用手指月亮&lt;/a&gt;
+        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[耍冷] 不要用手指月亮&lt;/a&gt;
     &lt;/div&gt;
     &lt;div class="r-ent"&gt;...
-        &lt;a href="https://ptt.cc..."&gt;[笑話] 很大隻的黑狗&lt;/a&gt;
+        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[笑話] 很大隻的黑狗&lt;/a&gt;
     &lt;/div&gt;
     &lt;div class="r-ent"&gt;...
-        &lt;a href="https://ptt.cc..."&gt;[猜謎] 寂寞了要找哪個單位&lt;/a&gt;
+        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[猜謎] 寂寞了要找哪個單位&lt;/a&gt;
     &lt;/div&gt;
     &lt;div class="r-ent"&gt;...
-        &lt;a href="https://ptt.cc..."&gt;[猜謎] 今天是幾月幾號？&lt;/a&gt;
+        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[猜謎] 今天是幾月幾號？&lt;/a&gt;
     &lt;/div&gt;
 &lt;div&gt;
 '''
@@ -513,60 +509,52 @@ html = '''
 [i.attr('href') for i in dom('.r-ent a').items()]  # list comprehension
 dom('.r-ent a').map(lambda i, e: PyQuery(e).attr('href'))  # PyQuery.map
 dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html.HtmlElement.attrib
-```
-                        </div>
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Select Text Without Tag</h3>
-                        <div data-markdown>
-```html
+                    </section>
+                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
+                    </section>
+                    <section>
+                        <h3>Select Text Without Tag (cont.)</h3>
+                        <pre><code class="hljs html" data-trim data-noescape>
 &lt;div id="main-content" class="bbs-screen bbs-content"&gt;
     &lt;div class="article-metaline"&gt;...&lt;/div&gt;
     &lt;div class="article-metaline"&gt;...&lt;/div&gt;
     &lt;div class="article-metaline"&gt;...&lt;/div&gt;
     &lt;div class="article-metaline"&gt;...&lt;/div&gt;
-    助人為快樂之本溫泉 --
+    <span class="fragment zoom-in highlight-current-green">助人為快樂之本溫泉 --</span>
     &lt;span class="f2"&gt;...&lt;/span&gt;
     &lt;span class="f2"&gt;...&lt;/span&gt;
     &lt;div class="push"&gt;...&lt;/div&gt;
     &lt;div class="push"&gt;...&lt;/div&gt;
     &lt;div class="push"&gt;...&lt;/div&gt;
 &lt;/div&gt;
-```
-                        </div>
-                    </section>
-                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
-                    </section>
-                    <section>
-                        <h3>Select Text Without Tag (cont.)</h3>
-                        <div data-markdown>
-```python
+                        </code></pre>
+                        <pre><code class="hljs python" data-trim data-noescape>
 # BeautifulSoup
 soup.find_all(class_='article-metaline')[-1].nextSibling
 
 # PyQuery
 dom('#main-content').remove('*').text()
-dom('#main-content').clone().remove('*').text()
-```
-                        </div>
+dom('#main-content')<span class="fragment highlight-blue">.clone()</span>.remove('*').text()
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Find All Elements Before Certain Element</h3>
-                        <div data-markdown>
-```html
-&lt;class="r-ent"&gt;...&lt;/div&gt;
-&lt;class="r-ent"&gt;...&lt;/div&gt;
-&lt;class="r-ent"&gt;...&lt;/div&gt;
-&lt;class="r-list-sep"&gt;...&lt;/div&gt;
-&lt;class="r-ent"&gt;...&lt;/div&gt;
-
-```
-                        </div>
                     </section>
                     <section data-background-iframe="https://www.ptt.cc/bbs/joke/index.html">
                     </section>
                     <section>
                         <h3>Find All Elements Before Certain Element (cont.)</h3>
+                        <pre><code class="hljs html" data-trim data-noescape>
+&lt;class="r-ent"&gt;[囧rz] 一直睡覺的狗&lt;/div&gt;
+&lt;class="r-ent"&gt;[猜謎] 超黑的人 猜一部電影&lt;/div&gt;
+&lt;class="r-ent"&gt;[笑話] 古代文字獄&lt;/div&gt;
+<span class="fragment highlight-current-green">&lt;class="r-list-sep"&gt;&lt;/div&gt;</span>
+&lt;class="r-ent"&gt;![公告] joke版規 (2017/05/09 更新)&lt;/div&gt;
+                        </code></pre>
                         <div data-markdown>
 ```python
 # BeautifulSoup
@@ -589,34 +577,27 @@ eles = dom('.r-list-sep').prev_all('.r-ent')
                     </section>
                     <section>
                         <h3>More about URL Opener</h3>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 from pyquery import PyQuery
 
 # These are equivalent
-PyQuery(url='https://aji.tw')
+PyQuery(<span class="fragment highlight-blue">url='https://aji.tw'</span>)
 PyQuery('https://aji.tw')
 
 # add cookies
-PyQuery(
-    'https://www.ptt.cc/bbs/Gossiping/index.html',
-    cookies=dict(over18='1'),
-)
+PyQuery('http://www.anno.solutions/', <span class="fragment highlight-blue">cookies=</span>dict(over18='1'))
 
 # add headers
 PyQuery(
     'https://aji.tw',
-    headers={
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8',
-    },
-```
-                        </div>
+    <span class="fragment highlight-blue">headers=</span>{'User-Agent': 'I am not a robot!'}
+)
+                        </code></pre>
                     </section>
                     <section>
                         <h3>More about URL Opener (cont.)</h3>
                         <small data-markdown>`PyQuery` allows you to add a custom url opener by passing `opener` as an argument.</small>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 from pyquery import PyQuery
 from selenium.webdriver import Firefox
 
@@ -628,43 +609,36 @@ def selenium_opener(url):
     return html
 
 if __name__ == '__main__':
-    PyQuery('https://aji.tw', opener=selenium_opener)
-```
-                        </div>
+    PyQuery('https://aji.tw', <span class="fragment highlight-current-green">opener=</span>selenium_opener)
+                        </pre></code>
                     </section>
                     <section>
                         <h3>Custom Function</h3>
                         <small data-markdown>You can do this by sub-classing `PyQuery`</small>
-
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 from pyquery import PyQuery
 
 class PyQueryPlus(PyQuery):
 
     def exists(self):
         return True if len(self) else False
-```
-                        </div>
-
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Custom Function (cont.)</h3>
                         <small>Or, you can do this in a more jquery-like way.</small>
-                        <div data-markdown>
-```python
+                        <pre><code class="hljs python" data-trim data-noescape>
 from pyqury import PyQuery
 
 # using lambda (more succinct)
-PyQuery.fn.exists = lambda: True if len(this) else False
+PyQuery.fn<span class="fragment highlight-blue">.exists</span> = lambda: True if len(this) else False
 
 # using def (more readable)
 def exists():
     return True if len(this) else False
 
-PyQuery.fn.exists = exists
-```
-                        </div>
+PyQuery.fn<span class="fragment highlight-blue">.exists</span> = exists
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Custom Pseudo-element Parser</h3>
@@ -801,24 +775,22 @@ if __name__ == '__main__':
                     <section>
                         <h3>Scrapy + PyQuery</h3>
                         <small>If you don't like Scrapy's ad hoc CSS pseudo classes...</small>
-                        <div data-markdown>
-```python
-response.css('.r-ent::text').extract()
-response.css('.r-ent::attr(href)').extract()
-```
-                        </div>
+                        <pre><code class="hljs python" data-trim data-noescape>
+response.css('.r-ent<span class="fragment highlight-current-green">::text'</span>).extract()
+response.css('.r-ent<span class="fragment highlight-current-green">::attr(href)'</span>).extract()
+                        </pre></code>
                     </section>
                     <section>
                         <h3>Scrapy + PyQuery (cont.)</h3>
                         <small data-markdown>You can set `PyQuery` object to `Scrapy` response</small>
                         <pre>middlewares.py</pre>
-                        <pre><code class="hljs python" data-trim>
+                        <pre><code class="hljs python" data-trim data-noescape>
 from pyquery import PyQuery
 
 class PyQueryMiddleware:
 
     def process_response(self, request, response, spider):
-        response.dom = PyQuery(response.text)
+        <span class="fragment highlight-current-green">response.dom</span> = PyQuery(response.text)
         return response
                         </code></pre>
                         <pre>settings.py</pre>
@@ -835,7 +807,8 @@ DOWNLOADER_MIDDLEWARES = {
                 <section>
                     <h2>Final Words</h2>
                     <div style="font-size:24px;line-height:50px;" data-markdown>
-+ PyQuery is your best friend for web crawling.
++ PyQuery might be your best friend for web crawling.
++ Same logic at all times
 + Let's make `pyquery` stronger! ([Github issues](https://github.com/gawel/pyquery/issues))
                     </div>
                 </section>
