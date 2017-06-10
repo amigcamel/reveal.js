@@ -81,6 +81,11 @@
             color: yellow !important;
             font-weight: bold !important;
         }
+        img.logo {
+            border-radius: 50%;
+            width: 150px;
+            vertical-align: middle;
+        }
         </style>
     </head>
     <body>
@@ -97,10 +102,23 @@
                         </small>
                     </p>
                 </section>
-                <section data-background="img/me.jpg">
-                    <p id="aji" class="fragment">
-                        <a href="https://aji.tw" target="_blank">aji.tw</a>
-                    </p>
+                <section>
+                    <section data-background="img/me.jpg">
+                        <p id="aji" class="fragment">
+                            <a href="https://aji.tw" target="_blank">aji.tw</a>
+                        </p>
+                    </section>
+                    <section>
+                        <a href="http://www.kyle.com.tw/" target="_blank">
+                            <img class="logo" src="https://scontent.xx.fbcdn.net/v/t1.0-9/17523311_1423536641055110_1525332591472978623_n.png?oh=fcd4ced90f0eb49b6910d80069bdd2bd&oe=59A780F2" alt="kyle" />
+                            <span>凱爾知識語言工程有限公司</span>
+                        </a>
+                        <br />
+                        <a href="http://www.anno.solutions/" target="_blank">
+                            <img class="logo" src="https://scontent.xx.fbcdn.net/v/t1.0-9/18952600_179982789199724_6112987532070747622_n.png?oh=650b6de2ea8385cec97da90dc89d3a51&oe=59D41F5F" alt="anno" />
+                            <span>阿諾標記有限公司</span>
+                        </a>
+                    </section>
                 </section>
                 <section>
                     <h2>Outline</h2>
@@ -379,7 +397,7 @@ class PyQuery(list):
                         <h3>PyQuery Specifics</h3>
                         <ul class="tags">
                            <li>.base_url</li>
-                           <li>.make_links_absolute</li>
+                           <li class="yellow">.make_links_absolute</li>
                         </ul>
                     </section>
                     <section>
