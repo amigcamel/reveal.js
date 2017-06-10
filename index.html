@@ -671,20 +671,14 @@ PyQuery.fn.exists = exists
                         <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
                         <div data-markdown>
 ```python
-from pyquery import PyQuery
-from pyquery.cssselectpatch import JQueryTranslator
-
-class JQueryTranslatorPlus(JQueryTranslator):
+class JQueryTranslator:
 
     def xpath_second_pseudo(self, xpath):
         xpath.add_post_condition('position() = 2')
         return xpath
 
-class PyQueryPlus(PyQuery):
-    _translator_class = JQueryTranslatorPlus
-
 if __name__ == '__main__':
-    dom = PyQueryPlus('https://aji.tw')
+    dom = PyQuery('https://aji.tw')
     dom('h2:second')
 ```
                         </div>
