@@ -488,7 +488,7 @@ html = '''
 [i.attrs['href'] for i in soup.select('.r-ent a')]
 
 # PyQuery
-[i.attr('href') for i in dom('.r-ent a').items()]  # list comprehension
+[i.attr('href') for i in dom('.r-ent a')<mark>.items()</mark>]  # list comprehension
 dom('.r-ent a').map(lambda i, e: PyQuery(e).attr('href'))  # PyQuery.map
 dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html.HtmlElement.attrib
                         </code></pre>
@@ -653,7 +653,6 @@ class PyQuery(list):
                         <h3>Custom Pseudo-element Parser</h3>
                         <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
                         <pre><code class="hljs python" data-trim data-noescape>
-```python
 class JQueryTranslator:
 
     def <span class="fragment highlight-current-green">xpath_</span>second<span class="fragment highlight-current-green">_pseudo</span>(self, xpath):
@@ -663,7 +662,6 @@ class JQueryTranslator:
 if __name__ == '__main__':
     dom = PyQuery('https://aji.tw')
     dom('h2:second')
-```
                         </code></pre>
                     </section>
                     <section>
