@@ -623,13 +623,40 @@ PyQuery.fn<span class="fragment highlight-blue">.exists</span> = exists
                         </code></pre>
                     </section>
                     <section>
+                        <h3>Custom Function (cont.)</h3>
+                        <small data-markdown>A more complex example: `next_until`</small>
+                        <pre>pyquery.py</pre>
+                        <pre><code class="hljs python" data-trim data-noescape>
+class PyQuery(list):
+
+    # ...
+
+    @with_camel_case_alias
+    def next_until(self, selector, filter_=None):
+        eles = []
+        for e in self:
+            next_ = e.getnext()
+            while next_ is not None:
+                if next_.cssselect(selector):
+                    break
+                if filter_:
+                    if next_.cssselect(filter_):
+                        eles.append(next_)
+                else:
+                    eles.append(next_)
+
+                next_ = next_.getnext()
+        return self._copy(eles, parent=self)
+                        </code></pre>
+                    </section>
+                    <section>
                         <h3>Custom Pseudo-element Parser</h3>
                         <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
-                        <div data-markdown>
+                        <pre><code class="hljs python" data-trim data-noescape>
 ```python
 class JQueryTranslator:
 
-    def xpath_second_pseudo(self, xpath):
+    def <span class="fragment highlight-current-green">xpath_</span>second<span class="fragment highlight-current-green">_pseudo</span>(self, xpath):
         xpath.add_post_condition('position() = 2')
         return xpath
 
@@ -637,7 +664,7 @@ if __name__ == '__main__':
     dom = PyQuery('https://aji.tw')
     dom('h2:second')
 ```
-                        </div>
+                        </code></pre>
                     </section>
                     <section>
                         <h3>Monkey-patching</h3>
