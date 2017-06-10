@@ -653,6 +653,8 @@ class PyQuery(list):
                         <h3>Custom Pseudo-element Parser</h3>
                         <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
                         <pre><code class="hljs python" data-trim data-noescape>
+from pyquery.cssselectpatch import JQueryTranslator
+
 class JQueryTranslator:
 
     def <span class="fragment highlight-current-green">xpath_</span>second<span class="fragment highlight-current-green">_pseudo</span>(self, xpath):
