@@ -1,50 +1,399 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="en">
 
-		<title>reveal.js</title>
+<head>
+    <meta charset="utf-8">
+    <title>SLACK 介紹</title>
+    <meta name="description" content="">
+    <meta name="author" content="阿吉">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/blood.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.css">
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/typed.js/dist/typed.min.js"></script>
+    <script src="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    <style>
+    iframe {
+        display: block;
+        /* iframes are inline by default */
+        background: #000;
+        border: none;
+        /* Reset default border */
+        height: 70vh;
+        /* Viewport-relative units */
+        width: 100vw;
+    }
+    
+    .img-nodeco {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    .square-box {
+        position: relative;
+        width: 30px;
+        overflow: hidden;
+        border-radius: 10%;
+        display: inline-block;
+    }
+    
+    .square-box:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+    
+    .typed-cursor {
+        opacity: 1;
+        -webkit-animation: blink 0.7s infinite;
+        -moz-animation: blink 0.7s infinite;
+        animation: blink 0.7s infinite;
+    }
+    
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-webkit-keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-moz-keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    </style>
+</head>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1><img width="50%" style="background-color:#ffffff" data-src="src/slack.png"></h1>
+                <h3>企業級整合溝通工具</h3>
+                <p>
+                    <small>分享者 <a href="http://www.achiii.com.tw/">阿吉</a></small>
+                </p>
+            </section>
+            <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+                <h2>Slack是什麼？能吃嗎？</h2>
+                <p class="fragment">即時通訊軟體</p>
+            </section>
+            <section>
+                <section>
+                    <div>
+                        <span style="font-size:100px;">用</span>
+                        <img style="vertical-align:middle;width:15%;border-radius:10%" data-src="src/line.png">
+                        <span style="font-size:100px;"> 臭了嗎？</span>
+                    </div>
+                </section>
+                <section>
+                    <h2>沒臭，只是...</h2>
+                    <p class="fragment">已讀不回？</p>
+                    <p class="fragment">公私不分？</p>
+                    <p class="fragment">任務追蹤？</p>
+                </section>
+                <section>
+                    <h1>電腦玩物</h1>
+                    <blockquote><a href="http://www.playpcesor.com/2014/06/line-work.html">我們真要用 LINE 談論公事嗎？小心即時反害了工作效率</a></blockquote>
+                </section>
+                <section data-background-iframe="http://www.playpcesor.com/2014/06/line-work.html">
+                </section>
+            </section>
+            <section data-transition="slide" data-background="#ffffff" data-background-transition="zoom">
+                <section>
+                    <h2>跨平台</h2>
+                    <img class="img-nodeco" width="15%" data-src="src/windows.png">
+                    <img class="img-nodeco" width="15%" data-src="src/apple.png">
+                    <img class="img-nodeco" width="15%" data-src="src/linux.png">
+                    <img class="img-nodeco" width="15%" data-src="src/ios.png">
+                    <img class="img-nodeco" width="15%" data-src="src/android.png">
+                </section>
+                <section>
+                    <h2>跨瀏覽器</h2>
+                    <img class="img-nodeco" width="15%" data-src="src/chrome.png">
+                    <img class="img-nodeco" width="13%" data-src="src/firefox.png">
+                    <img class="img-nodeco" width="16%" data-src="src/safari.png">
+                    <p class="fragment fade-out"><img class="img-nodeco" width="15%" data-src="src/ie.png"></p>
+                </section>
+            </section>
+            <section data-transition="fade">
+                <h2>Slcak 對團隊的幫助</h2>
+                <p class="fragment">資訊公開透明</p>
+                <p class="fragment">主動取得資訊</p>
+                <p class="fragment">消極/積極的約束力</p>
+                <p class="fragment">組織扁平化</p>
+            </section>
+            <section>
+                <section>
+                    <h1>一起加入Slack吧！</h1>
+                </section>
+                <section>
+                    <h3>你會收到一封 email</h3>
+                    <img data-src="src/slack1.png">
+                </section>
+                <section>
+                    <h3>設定密碼</h3>
+                    <img data-src="src/slack2.png">
+                </section>
+                <section>
+                    <h3>成功！</h3>
+                    <img width="45%" data-src="src/slack3.png">
+                </section>
+                <section>
+                    <h3>登入</h3>
+                    <img data-src="src/slack4.png">
+                </section>
+            </section>
+            <section id="slack-features">
+                <section>
+                    <h1>功能介紹</h1>
+                </section>
+                <section>
+                    <h2>多種文字格式</h2>
+                    <small>方便閱讀</small>
+                    <p>~刪除線~ <span class="fragment"><s>巨網</s></span></p>
+                    <p>*粗體* <span class="fragment"><b>巨網</b></span></p>
+                    <p>_斜體_ <span class="fragment"><i>巨網</i></span></p>
+                </section>
+                <section>
+                    <h2>編輯訊息</h2>
+                    <small>說話不用三思而後行（誤</small>
+                </section>
+                <section>
+                    <h2>Pin</h2>
+                    <small></small>
+                </section>
+                <section>
+                    <h2>強大搜尋功能</h2>
+                    <small></small>
+                </section>
+                <section>
+                    <h2>標記訊息</h2>
+                    <small></small>
+                </section>
+                <section>
+                    <h2>自動高亮</h2>
+                    <small></small>
+                </section>
+                <section>
+                    <h2>多媒體支援</h2>
+                    <small>不用再另開分頁惹</small>
+                    <br>
+                    <img class="fragment" data-src="http://images.plurk.com/66a8433c2964584d611cad3f8e11fbb4.jpg">
+                </section>
+                <section>
+                    <h2>自動回應機器人</h2>
+                    <small>可以不要再問一樣的問題了嗎？</small>
+                    <p>
+                        <a href="https://bignet-test.slack.com/customize/slackbot" target="_blank"><img data-src="src/slackbot.jpg"></a>
+                </section>
+                <section>
+                    <h2>色碼速查</h2>
+                    <small>設計師的好朋友</small>
+                    <p style="font-family:courier">
+                        #4679BD <span class='square-box fragment' style="background:#4679BD;"></span>
+                    </p>
+                    <p style="font-family:courier">
+                        #5A6667 <span class='square-box fragment' style="background:#5A6667;"></span>
+                    </p>
+                    <p style="font-family:courier">
+                        #8CD0BC <span class='square-box fragment' style="background:#8CD0BC;"></span>
+                    </p>
+                </section>
+                <section>
+                    <h2 onclick="giphy()">/GIPHY</h2>
+                    <small>好GIF，不用嗎？</small>
+                    <div>
+                    <span id="giphy"></span>
+                    </div>
+                    <div>
+                        <img id="what" style="visibility:hidden" class="img-nodeco" data-src="src/what.gif">
+                    </div>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+                    <script>
+                    function giphy() {
+                        $("#giphy").typed({
+                            strings: ["/giphy bravo"],
+                            typeSpeed: 50
+                        });
+                        setTimeout(function() {
+                            $("#what").css('visibility', 'visible');
+                        }, 1500)
+                    }
+                    </script>
+                </section>
+                <section>
+                    <h2>Webhook</h2>
+                    <small>讓機器人告訴大家你很認真</small>
+                </section>
+            </section>
+            <section>
+                <section>
+                    
+                <h1>總結</h1>
+                </section>
+                <section>
+                    <h2>核心</h2>
+                    <p>訊息分流</p>
+                </section>
+                <section>
+                    <h2>功能特色</h2>
+                    <ul id="slack-features-ul"></ul>
+                    <script>
+                    $('#slack-features h2').each(function() {
+                        $('#slack-features-ul').append('<li>' + $(this).text() + '</li>');
+                    });
+                    </script>
+                </section>
+            </section>
+            <section>
+                <h2>其他選擇</h2>
+                <img class="img-nodeco" width="15%" data-src="src/campfire.png">
+                <img class="img-nodeco" width="15%" data-src="src/yammer.png">
+                <img class="img-nodeco" width="15%" data-src="src/hipchat.png">
+                <img class="img-nodeco" width="15%" data-src="src/jandi.svg">
+            </section>
+            <section>
+                <h2>相關資料</h2>
+                <ol style="font-size:20px;">
+                    <li><a href="http://www.playpcesor.com/2015/06/slack.html" target="_blank">Slack 完整教學與上手心得：找到正確的團隊溝通之道</a></li>
+                    <li><a href="https://hackpad.com/ep/pad/static/G1gFVC32qrF" target="_blank">Slack 使用指南</a></li>
+                    <li><a href="http://ponpon-gamelife.blogspot.tw/2015/04/slack.html" target="_blank">Slack 介紹及使用教學</a></li>
+                    <li><a href="https://versus.com/hk/line-vs-slack" target="_blank">Line vs Slack | 通訊應用程式技術規格比較 </a></li>
+                    <li><a href="https://www.buzzfeed.com/nicolenguyen/slack-attack?utm_term=.jnvOyAobG#.fqYOyKXdM" target="_blank">21 Productivity Hacks Every Slack User Should Know</a></li>
+                    <li><a href="https://premium.wpmudev.org/blog/slack-tips/" target="_blank">27 Productivity Tips and Hacks Every Slack User Should Know</a></li>
+                </ol>
+            </section>
+            <section data-background="src/simpson.gif">
+                <h3 style="color:#ffffff;text-shadow:none;align:left">THANK YOU</h3>
+            </section>
+            <section>
+                <h2>你的看法是...</h2>
+                <ol>
+                    <li>
+                        <h4 onclick="$('#machine1').css('visibility', 'visible');machine1.shuffle();">你在用LINE討論公事時有遇到什麼困難過嗎？</h4>
+                        <div id="machine1" style="visibility:hidden">
+                        <div style="display:inline-block;cursor:pointer" onclick="machine1.shuffle();">請</div>
+                        <div id="staff1" style="height:55px;display:inline-block"></div>
+                        <div style="display:inline-block;cursor:pointer" onclick="machine1.stop();">回答</div>
+                        </div>
+                    </li>
+                    <br>
+                    <li>
+                        <h4 onclick="$('#machine2').css('visibility', 'visible');machine2.shuffle();">你是不是也快被LINE逼瘋了呢？</h4>
+                        <div id="machine2" style="visibility:hidden">
+                        <div style="display:inline-block;cursor:pointer" onclick="machine2.shuffle();">請</div>
+                        <div id="staff2" style="height:55px;display:inline-block"></div>
+                        <div style="display:inline-block;cursor:pointer" onclick="machine2.stop();">回答</div>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        cands = ['阿白','科羽','Ammon','洗杯','安佐','Tia','湘嫻','瑞玲','Ruby','SaSa','雅鈴','其葳','北海','Chubby','沈姿','德德','沈大哥','方貞','小個','巧柔','巧君','彥澧','貢丸','緯詩','Keller','阿祐', '火鍋'];
+        $.each(cands, function(i, cand) {
+            $('#staff1,#staff2').append('<div style="background:red;border-radius:10px;margin:10px;">' + cand + '</div>');
+        });
+        machine1 = $("#staff1").slotMachine({
+            active: 1000,
+            delay: 450,
+        });
+        machine2 = $("#staff2").slotMachine({
+            active: 1000,
+            delay: 450,
+        });
+        // machine1.shuffle();
+        // machine2.shuffle();
+    });
+    </script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        // Optional reveal.js plugins
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true
+        }]
+    });
+    </script>
+</body>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
 </html>

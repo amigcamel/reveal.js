@@ -1,6 +1,6 @@
 {
   "name": "reveal.js",
-  "version": "3.4.1",
+  "version": "3.2.0",
   "main": [
     "js/reveal.js",
     "css/reveal.css"
@@ -12,7 +12,8 @@
     "Hakim El Hattab <hakim.elhattab@gmail.com>"
   ],
   "dependencies": {
-    "headjs": "~1.0.3"
+    "headjs": "~1.0.3",
+    "jQuery-SlotMachine": "jquery-slotmachine#~3.0.1"
   },
   "repository": {
     "type": "git",
