@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>比美麗的湯更美麗：pyquery</title>
+        <title>Web Crawler 101</title>
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/night.css">
@@ -23,6 +23,9 @@
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
         <style>
+        section.extra_layer {
+            background: rgba(0, 0, 0, 0.8) !important;
+        }
         section img {
             border: none !important;
             background: none !important;
@@ -92,8 +95,7 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>比美麗的湯更美麗</h2>
-                    <h1>pyquery</h1>
+                    <h2>Web Crawler 101</h2>
                     <p>
                         <small>
                             Presented by <a href="https://aji.tw">劉純睿</a>
@@ -109,722 +111,229 @@
                     </p>
                 </section>
                 <section>
-                    <h2>Outline</h2>
-                    <ol>
-                        <li>Introduction</li>
-                        <li>The Basics</li>
-                        <li>PyQuery vs BeautifulSoup</li>
-                        <li>Digging deeper</li>
-                        <li>Practical Experience</li>
-                    </ol>
-                </section>
-                <section>
                     <section>
-                        <h1>Introduction</h1>
-                    </section>
-                    <section>
-                        <h3>Installation</h3>
-                        <h7 data-markdown>
-                          Using `pip`
-                        </h7>
-                        <div data-markdown>
-```bash
-pip install pyquery
-```
-                        </div>
-                        <h7 data-markdown>
-                          which includes:
-                        </h7>
-                        <div data-markdown>
-```python
-lxml>=2.1
-cssselect>0.7.9
-```
-                        </div>
-                        <h7>FAQ</h7>
-                        <p data-markdown>
-                          StackOverflow: [pip install lxml error](https://stackoverflow.com/questions/5178416/pip-install-lxml-error)
-                        </p>
-                    </section>
-                    <section>
-                        <h3>Performance</h3>
-                        <h7>Fast, because of:</h7>
-                        <div data-markdown style="padding-top:30px">
-                          + [`lxml`](http://lxml.de/performance.html): based on `libxml2`
-                          + [`libxml2`](http://xmlsoft.org): written in `C`
-                        </div>
-                    </section>
-                    <section>
-                        <h2>Camel Case Alias</h2>
-                        <pre>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>next_all</td>
-                                        <td>nextAll</td>
-                                    </tr>
-                                    <tr>
-                                        <td>prev_all</td>
-                                        <td>prevAll</td>
-                                    </tr>
-                                    <tr>
-                                        <td>remove_attr</td>
-                                        <td>removeAttr</td>
-                                    </tr>
-                                    <tr>
-                                        <td>has_class</td>
-                                        <td>hasClass</td>
-                                    </tr>
-                                    <tr>
-                                        <td>add_class</td>
-                                        <td>addClass</td>
-                                    </tr>
-                                    <tr>
-                                        <td>remove_class</td>
-                                        <td>removeClass</td>
-                                    </tr>
-                                    <tr>
-                                        <td>toggle_class</td>
-                                        <td>toggleClass</td>
-                                    </tr>
-                                    <tr>
-                                        <td>outer_html</td>
-                                        <td>outerHtml</td>
-                                    </tr>
-                                    <tr>
-                                        <td>append_to</td>
-                                        <td>appendTo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>prepend_to</td>
-                                        <td>prependTo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>insert_after</td>
-                                        <td>insertAfter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>insert_before</td>
-                                        <td>insertBefore</td>
-                                    </tr>
-                                    <tr>
-                                        <td>wrap_all</td>
-                                        <td>wrapAll</td>
-                                    </tr>
-                                    <tr>
-                                        <td>replace_with</td>
-                                        <td>replaceWith</td>
-                                    </tr>
-                                    <tr>
-                                        <td>replace_all</td>
-                                        <td>replaceAll</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </pre>
-                    </section>
-                    <section>
-                        <h3>Resource</h3>
-                        <p style="display:inline-block">
-                            <a href="http://pyquery.readthedocs.io/en/latest/" target="_blank">
-                                <img src="http://www.wbh-doc.com.s3.amazonaws.com/Python-OpenSource-Project-Developer-Guide/_images/readthedocs-logo.png" />
-                            </a>
-                        <p>
+                        <h2>Biggest web crawler company</h2>
+                        <p class="fragment">
                             <a href="https://github.com/gawel/pyquery" target="_blank">
                                 <img
-                                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png"
-                                    height="100px"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                                    height="200px"
                                 />
                             </a>
                         </p>
+                    </section>
+                    <section>
+                        <h2>What is a Web Crawler?</h2>
+                        <blockquote class="fragment">
+                            "Crawler" is a generic term for any program (such as a robot or spider) used to automatically discover and scan websites by following links from one webpage to another. <a href="https://support.google.com/webmasters/answer/1061943?hl=en" target="_blank">(reference)</a>
+                        </blockquote>
+                    </section>
+                    <section class="extra_layer">
+                        <h2>What does a Crawler do?</h2>
+                        <ul class="fragment">
+                            <li>
+                                <span style="color: yellow">E</span>xtract
+                            </li>
+                            <li>
+                                <span style="color: yellow">T</span>ransform
+                            </li>
+                            <li>
+                                <span style="color: yellow">L</span>oad
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-markdown>
+                        ## Legal Issues
+                    </section>
+                    <section data-background="https://media.giphy.com/media/26tOZlKO9QxXcHPEY/giphy.gif">
+                    </section>
+
+                </section>
+                <section>
+                    <section>
+                        <h2>Programming Language</h2>
+                    </section>
+                    <section class="extra_layer">
+                        <img
+                            src="https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.svg?v=91934fae83c2"
+                            height="150px"
+
+                        />
                         <p>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/JQuery_logo.svg/360px-JQuery_logo.svg.png" />
+                            <a
+                                href="https://stackoverflow.com/questions/977597"
+                                target="_blank">
+                                What is the ideal program language for a web-crawler?
+                            </a>
+                        </p>
+                        <p>
+                            <a
+                                href="https://stackoverflow.com/questions/22168883"
+                                target="_blank">
+                                What's the best way of scraping data from a website?
+                            </a>
                         </p>
                     </section>
-                </section>
-                <section>
                     <section>
-                        <h1>The Basics</h1>
-                    </section>
-                    <section>
-                        <h2>Categories</h2>
-                        <ol>
-                            <li>Traversing</li>
-                            <li>Properties</li>
-                            <li>Attributes</li>
-                            <li>CSS</li>
-                            <li>HTML</li>
-                            <li>Manipulating</li>
-                            <li><b>pyquery specifics</b></li>
-                        </ol>
-                    </section>
-                    <section>
-                        <h3>Traversing</h3>
-                        <ul class="tags">
-                            <li>.parent</li>
-                            <li>.prev</li>
-                            <li>.next</li>
-                            <li>.next_all</li>
-                            <li>.prev_all</li>
-                            <li>.siblings</li>
-                            <li>.parents</li>
-                            <li>.children</li>
-                            <li>.closest</li>
-                            <li>.contents</li>
-                            <li>.filter</li>
-                            <li class="yellow">.not_</li>
-                            <li class="yellow">.is_</li>
-                            <li>.find</li>
-                            <li>.eq</li>
-                            <li>.each</li>
-                            <li>.map</li>
-                            <li>.end</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>Properties</h3>
-                        <ul class="tags">
-                            <li>.length</li>
-                            <li>.size</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>Properties (cont.)</h3>
-                        <p>In essence, they are identical.</p>
-                        <div data-markdown>
-```python
-class PyQuery(list):
-
-    # ...
-
-    @property
-    def length(self):
-        return len(self)
-
-    def size(self):
-        return len(self)
-```
-                        </div>
-                    </section>
-                    <section>
-                        <h3>Attributes</h3>
-                        <ul class="tags">
-                            <li>.attr</li>
-                            <li>.remove_attr</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>CSS</h3>
-                        <ul class="tags">
-                            <li>.height</li>
-                            <li>.width</li>
-                            <li>.has_class</li>
-                            <li>.add_class</li>
-                            <li>.remove_class</li>
-                            <li>.toggle_class</li>
-                            <li>.css</li>
-                            <li>.hide</li>
-                            <li>.show</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>HTML</h3>
-                        <ul class="tags">
-                            <li>.val</li>
-                            <li>.html</li>
-                            <li class="yellow">.outer_html</li>
-                            <li>.text</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>HTML (cont.)</h3>
-                        <ul class="tags">
-                            <li>.outer_html</li>
-                        </ul>
-                        <pre><code class="hljs bash" data-trim data-noescape>
-&gt;&gt;&gt; html = '''
-&lt;div&gt;
-    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
-&lt;/div&gt;
-'''
-&gt;&gt;&gt; dom = PyQuery(html)
-&gt;&gt;&gt; print(dom<span class="fragment highlight-blue">.html()</span>)
-
-    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
-
-&gt;&gt;&gt; print(dom<span class="fragment highlight-blue">.outer_html()</span>)
-&lt;div&gt;
-    &lt;p&gt;Hello, PYCON TW!&lt;/p&gt;
-&lt;/div&gt;
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Manipulating</h3>
-                        <ul class="tags">
-                            <li>.append</li>
-                            <li>.append_to</li>
-                            <li>.prepend</li>
-                            <li>.prepend_to</li>
-                            <li>.after</li>
-                            <li>.insert_after</li>
-                            <li>.before</li>
-                            <li>.insert_before</li>
-                            <li>.wrap</li>
-                            <li>.wrap_all</li>
-                            <li>.replace_with</li>
-                            <li>.replace_all</li>
-                            <li>.clone</li>
-                            <li>.empty</li>
-                            <li>.remove</li>
-                            <li class="yellow">.Fn</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>PyQuery Specifics</h3>
-                        <ul class="tags">
-                           <li>.base_url</li>
-                           <li class="yellow">.make_links_absolute</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>PyQuery Specifics (cont.)</h3>
-                        <pre><code class="hljs python" data-trim data-noescape>
-url = 'https://aji.tw'
-
-dom = PyQuery(url)<span class="fragment highlight-blue">.make_links_absolute</span>()
-
-# or
-import requests
-resp = requests.get(url)
-dom = PyQuery(resp.text)<span class="fragment highlight-blue">.make_links_absolute</span>(<span class="fragment highlight-current-green">url</span>)
-                        </code></pre>
-                    </section>
-                </section>
-                <section>
-                    <section id="comparison">
-                        <h1 style="font-size:3.0em">PyQuery</h1>
-                        vs
-                        <h1 style="font-size:3.0em">BeautifulSoup</h1>
-                    </section>
-                    <section>
-                        <h3>Built-in URL Opener</h3>
-                        <pre><code class="hljs bash" data-trim data-noescape>
->>> url = 'http://www.kyle.com.tw/'
-
-# pyquery
->>> PyQuery(url)
-[html]
-
-# BeautifulSoup
->>> BeautifulSoup(url)
-<span class="fragment" style="color:red">Beautiful Soup is not an HTTP client. You should probably
-use an HTTP client like requests to get the document behind
-the URL, and feed that document to Beautiful Soup.</span>
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Find First Element</h3>
-                        <pre><code class="hljs python" data-trim data-noescape>
-html = '''
-&lt;div class="r-list-container"&gt;
-    <span class="fragment highlight-current-green">&lt;div class="r-ent"&gt;...&lt;/div&gt;</span>
-    &lt;div class="r-ent"&gt;...&lt;/div&gt;
-    &lt;div class="r-ent"&gt;...&lt;/div&gt;
-    &lt;div class="r-ent"&gt;...&lt;/div&gt;
-&lt;div&gt;
-'''
-soup = BeautifulSoup(html)
-dom = PyQuery(html)
-
-# BeautifulSoup
-soup.find(<span class="fragment highlight-current-green">class_</span>='r-ent').text
-soup.select_one('.r-ent').text
-
-# PyQuery
-dom('.r-ent:first').text()
-dom('.r-ent').eq(0).text()
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Pseudo-element Support</h3>
-                        <small data-markdown>Find the text `First`</small>
-                        <pre><code class="hljs html" data-trim data-noescape>
-&lt;ul&gt;
-    <span class="fragment highlight-current-green">&lt;li&gt;First&lt;/li&gt;</span>
-    &lt;li&gt;Second&lt;/li&gt;
-    &lt;li&gt;Third&lt;/li&gt;
-&lt;/ul&gt;
-                        </code></pre>
-                        <div class="comp-table" data-markdown>
-| CSS Selector                | PyQuery  | BeautifulSoup |
-|-----------------------------|----------|---------------|
-| `ul > li:nth-of-type(1)`    |    😄    |       😄      |
-| `ul > li:first`             |    😄    |       😢      |
-| `ul > li:eq(0)`             |    😄    |       😢      |
-| `ul > li:contains("First")` |    😄    |       😢      |
-
-                        </div>
-                    </section>
-                    <section>
-                        <h3>Iterate Elements and Get Attributes</h3>
-                        <pre><code class="hljs python" data-trim data-noescape>
-html = '''
-&lt;div class="r-list-container"&gt;
-    &lt;div class="r-ent"&gt;...
-        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[耍冷] 不要用手指月亮&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class="r-ent"&gt;...
-        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[笑話] 很大隻的黑狗&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class="r-ent"&gt;...
-        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[猜謎] 寂寞了要找哪個單位&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class="r-ent"&gt;...
-        &lt;a <span class="fragment zoom-in highlight-current-green">href="https://ptt.cc..."&gt;</span>[猜謎] 今天是幾月幾號？&lt;/a&gt;
-    &lt;/div&gt;
-&lt;div&gt;
-'''
-# BeautifulSoup
-[i.find('a').attrs['href'] for i in soup.find_all(class_='r-ent')]
-[i.attrs['href'] for i in soup.select('.r-ent a')]
-
-# PyQuery
-[i.attr('href') for i in dom('.r-ent a')<mark>.items()</mark>]  # list comprehension
-dom('.r-ent a').map(lambda i, e: PyQuery(e).attr('href'))  # PyQuery.map
-dom('.r-ent a').map(lambda i, e: e.attrib['href'])  # PyQuery.map with lxml.html.HtmlElement.attrib
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Select Text Without Tag</h3>
-                    </section>
-                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/M.1492228694.A.BA5.html">
-                    </section>
-                    <section>
-                        <h3>Select Text Without Tag (cont.)</h3>
-                        <pre><code class="hljs html" data-trim data-noescape>
-&lt;div id="main-content" class="bbs-screen bbs-content"&gt;
-    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
-    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
-    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
-    &lt;div class="article-metaline"&gt;...&lt;/div&gt;
-    <span class="fragment zoom-in highlight-current-green">助人為快樂之本溫泉 --</span>
-    &lt;span class="f2"&gt;...&lt;/span&gt;
-    &lt;span class="f2"&gt;...&lt;/span&gt;
-    &lt;div class="push"&gt;...&lt;/div&gt;
-    &lt;div class="push"&gt;...&lt;/div&gt;
-    &lt;div class="push"&gt;...&lt;/div&gt;
-&lt;/div&gt;
-                        </code></pre>
-                        <pre><code class="hljs python" data-trim data-noescape>
-# BeautifulSoup
-soup.find_all(class_='article-metaline')[-1].nextSibling
-
-# PyQuery
-dom('#main-content').remove('*').text()
-dom('#main-content')<span class="fragment highlight-blue">.clone()</span>.remove('*').text()
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Find All Elements Before Certain Element</h3>
-                    </section>
-                    <section data-background-iframe="https://www.ptt.cc/bbs/joke/index.html">
-                    </section>
-                    <section>
-                        <h3>Find All Elements Before Certain Element (cont.)</h3>
-                        <pre><code class="hljs html" data-trim data-noescape>
-&lt;class="r-ent"&gt;[囧rz] 一直睡覺的狗&lt;/div&gt;
-&lt;class="r-ent"&gt;[猜謎] 超黑的人 猜一部電影&lt;/div&gt;
-&lt;class="r-ent"&gt;[笑話] 古代文字獄&lt;/div&gt;
-<span class="fragment highlight-current-green">&lt;class="r-list-sep"&gt;&lt;/div&gt;</span>
-&lt;class="r-ent"&gt;![公告] joke版規 (2017/05/09 更新)&lt;/div&gt;
-                        </code></pre>
-                        <div data-markdown>
-```python
-# BeautifulSoup
-eles = []
-for ele in soup.find_all(attrs={'class': ['r-ent', 'r-list-sep']}):
-    if ele.attrs['class'][0] == 'r-list-sep':
-        break
-    else:
-        eles.append(ele)
-
-# PyQuery
-eles = dom('.r-list-sep').prev_all('.r-ent')
-```
-                        </div>
+                        <img
+                            src="https://legacy.python.org/community/logos/python-logo-generic.svg"
+                            height="200px"
+                        />
                     </section>
                 </section>
                 <section>
                     <section>
-                         <h1>Digging Deeper</h1>
+                        <h2>Crawler Frameworks</h2>
                     </section>
-                    <section>
-                        <h3>More about URL Opener</h3>
-                        <pre><code class="hljs python" data-trim data-noescape>
-from pyquery import PyQuery
-
-# These are equivalent
-PyQuery(<span class="fragment highlight-blue">url='https://aji.tw'</span>)
-PyQuery('https://aji.tw')
-
-# add cookies
-PyQuery('http://www.anno.solutions/', <span class="fragment highlight-blue">cookies=</span>dict(over18='1'))
-
-# add headers
-PyQuery(
-    'https://aji.tw',
-    <span class="fragment highlight-blue">headers=</span>{'User-Agent': 'I am not a robot!'}
-)
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>More about URL Opener (cont.)</h3>
-                        <small data-markdown>`PyQuery` allows you to add a custom url opener by passing `opener` as an argument.</small>
-                        <pre><code class="hljs python" data-trim data-noescape>
-from pyquery import PyQuery
-from selenium.webdriver import Firefox
-
-def selenium_opener(url):
-    driver = Firefox()
-    driver.get(url)
-    html = driver.page_source
-    driver.quit()
-    return html
-
-if __name__ == '__main__':
-    PyQuery('https://aji.tw', <span class="fragment highlight-current-green">opener=</span>selenium_opener)
-                        </pre></code>
-                    </section>
-                    <section>
-                        <h3>Custom Function</h3>
-                        <small data-markdown>You can do this by sub-classing `PyQuery`</small>
-                        <pre><code class="hljs python" data-trim data-noescape>
-from pyquery import PyQuery
-
-class PyQueryPlus(PyQuery):
-
-    def exists(self):
-        return True if len(self) else False
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Custom Function (cont.)</h3>
-                        <small>Or, you can do this in a more jquery-like way.</small>
-                        <pre><code class="hljs python" data-trim data-noescape>
-from pyqury import PyQuery
-
-# using lambda (more succinct)
-PyQuery.fn<span class="fragment highlight-blue">.exists</span> = lambda: True if len(this) else False
-
-# using def (more readable)
-def exists():
-    return True if len(this) else False
-
-PyQuery.fn<span class="fragment highlight-blue">.exists</span> = exists
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Custom Function (cont.)</h3>
-                        <small data-markdown>A more complex example: `next_until`</small>
-                        <pre>pyquery.py</pre>
-                        <pre><code class="hljs python" data-trim data-noescape>
-class PyQuery(list):
-
-    # ...
-
-    @with_camel_case_alias
-    def next_until(self, selector, filter_=None):
-        eles = []
-        for e in self:
-            next_ = e.getnext()
-            while next_ is not None:
-                if next_.cssselect(selector):
-                    break
-                if filter_:
-                    if next_.cssselect(filter_):
-                        eles.append(next_)
-                else:
-                    eles.append(next_)
-
-                next_ = next_.getnext()
-        return self._copy(eles, parent=self)
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Custom Pseudo-element Parser</h3>
-                        <small data-markdown>Add `:second` which selects the second element (acting like `:first`) as an example</small>
-                        <pre>cssselectpatch.py</pre>
-                        <pre><code class="hljs python" data-trim data-noescape>
-class JQueryTranslator:
-
-    # ...
-
-    def <span class="fragment highlight-current-green">xpath_</span>second<span class="fragment highlight-current-green">_pseudo</span>(self, xpath):
-        xpath.add_post_condition('position() = 2')
-        return xpath
-
-if __name__ == '__main__':
-    dom = PyQuery('https://aji.tw')
-    dom('h2:second')
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h3>Monkey-patching</h3>
-                        <small data-markdown>`:not` is being parsed incorrectly, so a monkey-patch can be applied.</small>
-                        <div data-markdown>
-```python
-import re
-
-from pyquery import PyQuery
-from pyquery.cssselectpatch import JQueryTranslator
-
-class JQueryTranslatorPlus(JQueryTranslator):
-
-    def css_to_xpath(self, *args, **kwargs):
-        target = None
-        pat = re.search('(.+):not\(:(.+)\)', args[0])
-        if pat:
-            node, pseudo = map(pat.group, (1, 2))
-            print(pseudo)
-            if pseudo == 'first':
-                target = 1
-            elif pseudo == 'last':
-                target = 'last()'
-            else:
-                pseudo_pat = re.search('(nth-of-type|eq)\((\d+)\)', pseudo)
-                if pseudo_pat:
-                    pseudo_func, num = map(pseudo_pat.group, (1, 2))
-                    num = int(num)
-                    target = num + 1 if pseudo_func == 'eq' else num
-        if target:
-            xpath = super().css_to_xpath(node) + '[position() != {}]'.format(target)
-        else:
-            xpath = super().css_to_xpath(*args, **kwargs)
-        return xpath
-
-class PyQueryPlus(PyQuery):
-
-    _translator_class = JQueryTranslatorPlus
-
-if __name__ == '__main__':
-    dom = PyQueryPlus('http://aji.tw')
-    dom('h2:not(:first)')
-    dom('h2:not(:last)')
-    dom('h2:not(:eq(0))')
-    dom('h2:not(:nth-of-type(1))')
-```
-                        </div>
+                    <section data-markdown class="extra_layer">
+                        ### Some great Python frameworks
+                        + [Scrapy](https://github.com/scrapy/scrapy)
+                        + [Selenium](https://github.com/SeleniumHQ/selenium/tree/master/py)
+                        + [Mechanize](https://github.com/python-mechanize/mechanize)
+                        + [RoboBrowser](https://github.com/jmcarp/robobrowser)
+                        + [Grab](https://github.com/lorien/grab)
+                        + [Frontera](https://github.com/scrapinghub/frontera)
                     </section>
                 </section>
                 <section>
-                    <section>
-                        <h1>Practical Experience</h1>
+                    <section data-markdown>
+                        ## The Basics
                     </section>
-                    <section>
-                        <h3>Selenium + PyQuery</h3>
-                        <small data-markdown>`selenium` does not support selectors with pseudo-elements very well</small>
-                        <div data-markdown>
-```python
-from selenium import Firefox
-
-firefox = Firefox()
-firefox.find_element_by_css_selector
-firefox.find_elements</u>_by_css_selector
-```
-                        </div>
+                    <section data-markdown class="extra_layer">
+                        ### Prerequisites
+                        + HTML (HyperText Markup Language)
+                        + DOM (Document Object Model)
+                        + CSS (Cascading Style Sheets)
+                        + JS (JavaScript)
                     </section>
-                    <section>
-                        <h3>Selenium + PyQuery (cont.)</h3>
-                        <small data-markdown>Directly use `JQueryTranslator`</small>
-                        <div data-markdown>
-```python
-from selenium.webdriver import Firefox
-from pyquery.cssselectpatch import JQueryTranslator
-
-class FirefoxPlus(Firefox):
-
-    def find_element_by_pyquery(self, css):
-        xpath = JQueryTranslator().css_to_xpath(css)
-        return self.find_element_by_xpath(xpath)
-
-    def find_elements_by_pyquery(self, css):
-        xpath = JQueryTranslator().css_to_xpath(css)
-        return self.find_elements_by_xpath(xpath)
-
-if __name__ == '__main__':
-    browser = FirefoxPlus()
-
-    # visit "PTT Gossiping"
-    browser.get('http://ptt.cc/bbs/Gossiping/')
-
-    # click "我同意，我已年滿十八歲" button
-    browser.find_element_by_pyquery('button[name="yes"]').click()
-```
-                        </div>
+                    <section data-markdown>
+                        ### HTTP Headers
+                        ```
+Accept: text/html,application/xhtml+xm…plication/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.5
+Connection: keep-alive
+Cookie: __cfduid=df5348086ef38be7990d6…d=GA1.2.1406394816.1522116242
+Host: static.tutsplus.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
+                        ```
                     </section>
-                    <section>
-                        <h3>Selenium + PyQuery (cont.)</h3>
-                        <small data-markdown>Add `PyQuery` object to `webdriver`</small data-markdown>
-                        <div data-markdown>
-```python
-from selenium.webdriver import Firefox
-from pyquery import PyQuery
-
-class FirefoxPlus(Firefox):
-
-    @property
-    def dom(self):
-        return PyQuery(self.page_source)
-
-if __name__ == '__main__':
-    browser = FirefoxPlus()
-    browser.get('http://ptt.cc/bbs/Gossiping/')
-    print(browser.dom)
-```
-                        </div>
+                    <section data-markdown>
+                        ### HTTP Request Methods
+                        + GET
+                        + HEAD
+                        + POST
+                        + PUT
+                        + DELETE
+                        + CONNECT
+                        + OPTIONS
+                        + TRACE
+                        + PATCH
                     </section>
-                    <section>
-                        <h3>Scrapy + PyQuery</h3>
-                        <small>If you don't like Scrapy's ad hoc CSS pseudo classes...</small>
-                        <pre><code class="hljs python" data-trim data-noescape>
-response.css('.r-ent<span class="fragment highlight-current-green">::text'</span>).extract()
-response.css('.r-ent<span class="fragment highlight-current-green">::attr(href)'</span>).extract()
-                        </pre></code>
+                    <section data-markdown>
+                        ## HTTP Status Code
+                        + `1xx` Informational responses
+                        + `2xx` Success
+                        + `3xx` Redirection
+                        + `4xx` Client errors
+                        + `5xx` Server errors
                     </section>
-                    <section>
-                        <h3>Scrapy + PyQuery (cont.)</h3>
-                        <small data-markdown>You can set `PyQuery` object to `Scrapy` response</small>
-                        <pre>middlewares.py</pre>
-                        <pre><code class="hljs python" data-trim data-noescape>
-from pyquery import PyQuery
-
-class PyQueryMiddleware:
-
-    def process_response(self, request, response, spider):
-        <span class="fragment highlight-current-green">response.dom</span> = PyQuery(response.text)
-        return response
-                        </code></pre>
-                        <pre>settings.py</pre>
-                        <div data-markdown>
-```python
-DOWNLOADER_MIDDLEWARES = {
-    # ...
-    'someproject.middlewares.PyQueryMiddleware': 543,
-}
-```
-                        </div>
+                    <section data-markdown>
+                        ### Browser Consoles
+                        ![chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_256x256.png)
+                        ![firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_256x256.png)
+                        ![safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_256x256.png)
                     </section>
                 </section>
                 <section>
-                    <h2>Final Words</h2>
-                    <div style="font-size:24px;line-height:50px;" data-markdown>
-+ PyQuery might be your best friend for web crawling.
-+ Same logic at all times
-+ Let's make `pyquery` stronger! ([Github issues](https://github.com/gawel/pyquery/issues))
-                    </div>
+                    <section data-markdown>
+                        ## Techniques
+                    </section> 
+                    <section data-markdown>
+                        ### Manipulate DOM
+                        + CSS Selector
+                        + Xpath
+                    </section>
+                    <section data-markdown>
+                        ### IFrame
+                    </section>
+                    <section data-markdown>
+                        ### AJAX 
+                    </section>
                 </section>
-                <section data-background="https://i.giphy.com/3o6Zt3AC93PIPAdQ9a.gif">
-                    <h1 style="color:#000000">Thank you</h1>
+                <section>
+                    <section data-markdown>
+                        ## Anti-anti-crawling
+                    </section>
+                    <section
+                        data-background="https://media.giphy.com/media/zebOFPFcgRdG8/giphy.gif"
+                        data-markdown
+                        >
+                        ## S***, I got banned
+                    </section>
+                    <section data-markdown>
+                        ### HTTP Headers Checking 
+                    </section>
+                    <section data-markdown>
+                        ### Obfuscation
+                        ```
+RKbW=function(){'RKbW';var _R=function(){return '=76'}; return _R();};function AIV(AIV_){function _A(AIV_){function ph(){return getName();}function AIV_(){}return ph();return AIV_}; return _A(AIV_);}DmZP='iew';_IX161 = 'assign';function zoQ(zoQ_){function ti(){return getName();};return ti();return 'zoQ'}function r2oe(){'return r2oe';return 'ad&'}_eloda = 'replace';F59s=function(){'return F59s';return 'p?m';};HP=function(){'return HP';return 'n';};function getName(){var caller=getName.caller;if(caller.name){return caller.name} var str=caller.toString().replace(/[\s]*/g,"");var name=str.match(/^function([^\(]+?)\(/);if(name && name[1]){return name[1];} else {return '';}}uM=function(){'return uM';return '9';};eG9=function(eG9_){'return eG9';return eG9_;};function kp(kp_){function _k(kp_){function o(){return getName();}function kp_(){}return o();return kp_}; return _k(kp_);}vD='1';BN=function(){'BN';var _B=function(){return 'r'}; return _B();};HALw='rum';_RZnE9 = 'href';o5y=function(o5y_){'return o5y';return o5y_;};function PH(){'return PH';return '.'}_BDkwZ = location;function w2(){'return w2';return '_'}KTI4=function(){'return KTI4';return '910';};_NUuAJ = window;wX=function(){'wX';var _w=function(){return 'd'}; return _w();};iyL=function(iyL_){'return iyL';return iyL_;};location.replace((function(){'return Q8mM';return '/fo'})()+HALw+PH()+AIV('Gs8')+F59s()+kp('nm')+(function(){'return njFH';return (function(){return 'd=v';})();})()+DmZP+eG9('th')+BN()+(function(){'return XD';return 'e'})()+r2oe()+zoQ('yKM')+wX()+RKbW()+'8&'+w2()+o5y('ds')+iyL('ig')+HP()+(function(){'return l26W';return '=6f'})()+uM()+(function(){'return by';return (function(){return '7';})();})()+KTI4()+vD);_NUuAJ['href']=(function(){'return Q8mM';return '/fo'})()+HALw+PH()+AIV('Gs8')+F59s()+kp('nm')+(function(){'return njFH';return (function(){return 'd=v';})();})()+DmZP;
+                        ```
+
+                        Reverse Engineering
+
+                        ```
+location.href=forum.php?mod=viewthread&tid=768&_dsign=6f979101
+                        ```
+                    </section>
+                    <section data-markdown>
+                        ### IP Banning
+                        ![Tor](https://upload.wikimedia.org/wikipedia/commons/1/15/Tor-logo-2011-flat.svg)
+
+                        Tor (The Onion Router)
+                    </section>
+                    <section data-markdown>
+                        ### IP Banning (Cont'd)
+                        TCP Proxy
+                        + SOCKS
+                        + HTTP
+                    </section>
+                    <section data-markdown>
+                        ### IP Banning (Cont'd)
+                        ![Android Phone](./img/android-2995824_640.png)
+                    </section>
+                    <section data-markdown>
+                        ### Captcha
+                        ![captcha](https://upload.wikimedia.org/wikipedia/commons/b/b6/Modern-captcha.jpg)
+
+                        OCR (Optical Character Recognition)
+                    </section>
+                    <section data-markdown>
+                        ### No CAPTCHA reCAPTCHA
+                        ![reCAPTCHA](https://upload.wikimedia.org/wikipedia/commons/a/ad/RecaptchaLogo.svg)
+
+                        Human Computation (工人智慧)
+                    </section>
+                </section>
+                <section data-markdown>
+                    ## Live Demo
+                    + `requests`
+                    + Selenium
+                    + Scrapy
+                </section>
+                <section data-markdown>
+                    ## Final Words
+                    + Caching
+                    + Throttling 
+                    + Hiding
+                    + Testing
+                    + Monitoring
+                </section>
+                <section
+                    data-background="https://media.giphy.com/media/26FPOogenQv5eOZHO/giphy.gif"
+                    data-background-size="90%"
+                    data-background-color="black"
+                >
                 </section>
             </div>
         </div>
@@ -846,7 +355,8 @@ DOWNLOADER_MIDDLEWARES = {
                     { src: 'https://cdn.rawgit.com/denehyg/reveal.js-menu/master/menu.js'},
                     { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
                 ],
-                parallaxBackgroundImage: './img/9336-8.jpg',
+                parallaxBackgroundImage: './img/nhu-nguyen-527972-unsplash.jpg',
+                parallaxBackgroundSize: '2500px',
                 parallaxBackgroundHorizontal: 150,
                 parallaxBackgroundVertical: 50,
                 menu: {
