@@ -128,30 +128,28 @@
                             "Crawler" is a generic term for any program (such as a robot or spider) used to automatically discover and scan websites by following links from one webpage to another. <a href="https://support.google.com/webmasters/answer/1061943?hl=en" target="_blank">(reference)</a>
                         </blockquote>
                     </section>
-                    <section class="extra_layer">
-                        <h2>What does a Crawler do?</h2>
-                        <ul class="fragment">
-                            <li>
-                                <span style="color: yellow">E</span>xtract
-                            </li>
-                            <li>
-                                <span style="color: yellow">T</span>ransform
-                            </li>
-                            <li>
-                                <span style="color: yellow">L</span>oad
-                            </li>
-                        </ul>
+                    <section data-markdown>
+                     	<script type="text/template">
+                        ## What does a Crawler do?
+                        + <span class="fragment highlight-green">E</span>xtract
+                        + <span class="fragment highlight-green">T</span>ransform
+                        + <span class="fragment highlight-green">L</span>oad
+                        </script>
                     </section>
                     <section data-markdown>
                         ## Legal Issues
+                    </section>
+                    <section data-markdown>
+                        ### `robots.txt`
+                        > A robots.txt file is a file at the root of your site that indicates those parts of your site you don’t want accessed by search engine crawlers [(reference)](https://support.google.com/webmasters/answer/6062608?hl=en)
                     </section>
                     <section data-background="https://media.giphy.com/media/26tOZlKO9QxXcHPEY/giphy.gif">
                     </section>
 
                 </section>
                 <section>
-                    <section>
-                        <h2>Programming Language</h2>
+                    <section data-markdown>
+                        ## Programming Language
                     </section>
                     <section class="extra_layer">
                         <img
@@ -200,11 +198,17 @@
                         ## The Basics
                     </section>
                     <section data-markdown class="extra_layer">
+                     	<script type="text/template">
                         ### Prerequisites
-                        + HTML (HyperText Markup Language)
-                        + DOM (Document Object Model)
-                        + CSS (Cascading Style Sheets)
-                        + JS (JavaScript)
+                        + HTML
+                        <span class="fragment">(HyperText Markup Language)</span>
+                        + DOM
+                        <span class="fragment">(Document Object Model)</span>
+                        + CSS
+                        <span class="fragment">(Cascading Style Sheets)</span>
+                        + JS
+                        <span class="fragment">(JavaScript)</span>
+                        </script>
                     </section>
                     <section data-markdown>
                         ### HTTP Headers
@@ -219,16 +223,18 @@ User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
                         ```
                     </section>
                     <section data-markdown>
+                     	<script type="text/template">
                         ### HTTP Request Methods
-                        + GET
-                        + HEAD
-                        + POST
+                        + GET <!-- .element: class="fragment highlight-red" -->
+                        + HEAD 
+                        + POST <!-- .element: class="fragment highlight-red" -->
                         + PUT
                         + DELETE
                         + CONNECT
                         + OPTIONS
                         + TRACE
                         + PATCH
+                        </script>
                     </section>
                     <section data-markdown>
                         ## HTTP Status Code
@@ -239,6 +245,18 @@ User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
                         + `5xx` Server errors
                     </section>
                     <section data-markdown>
+                        ## Data Fromat
+                        + HTML
+                        + XML
+                        + JSON
+                    </section>
+                    <section data-markdown>
+                        ### IFrame
+                    </section>
+                    <section data-markdown>
+                        ### AJAX 
+                    </section>
+                    <section data-markdown>
                         ### Browser Consoles
                         ![chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_256x256.png)
                         ![firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_256x256.png)
@@ -247,18 +265,19 @@ User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
                 </section>
                 <section>
                     <section data-markdown>
-                        ## Techniques
+                        ## Manipulating DOM
                     </section> 
-                    <section data-markdown>
-                        ### Manipulate DOM
+                    <section class="extra_layer" data-markdown>
+                        ### Parsers
                         + CSS Selector
                         + Xpath
                     </section>
-                    <section data-markdown>
-                        ### IFrame
-                    </section>
-                    <section data-markdown>
-                        ### AJAX 
+                    <section class="extra_layer" data-markdown>
+                        ### Python Libraries
+                        + PyQuery
+                        + BeautifulSoup4
+                        + Selenium (built-in)
+                        + Scrapy (built-in)
                     </section>
                 </section>
                 <section>
@@ -299,8 +318,10 @@ location.href=forum.php?mod=viewthread&tid=768&_dsign=6f979101
                         + HTTP
                     </section>
                     <section data-markdown>
+                     	<script type="text/template">
                         ### IP Banning (Cont'd)
-                        ![Android Phone](./img/android-2995824_640.png)
+                        ![Android Phone](./img/android-2995824_640.png) <!-- .element: height="500px;" -->
+                        </script>
                     </section>
                     <section data-markdown>
                         ### Captcha
@@ -323,6 +344,7 @@ location.href=forum.php?mod=viewthread&tid=768&_dsign=6f979101
                 </section>
                 <section data-markdown>
                     ## Final Words
+                    + API first
                     + Caching
                     + Throttling 
                     + Hiding
