@@ -89,6 +89,9 @@
             color: #000000;
             opacity: 0.9;
         }
+        #dom-parsers + table {
+            font-size: 20px;
+        }
         </style>
     </head>
     <body>
@@ -271,16 +274,31 @@ User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
                         ## Manipulating DOM
                     </section> 
                     <section class="extra_layer" data-markdown>
-                        ### Parsers
-                        + CSS Selector
-                        + Xpath
+                        ### DOM Parsers
+
+| XPath | CSS Selector |
+|------------------------------------|-------------------|
+| //* | * |
+| //p | p |
+| //p/* | p > * |
+| //*[@id=’foo’] | #foo |
+| //*[contains(@class,’foo’)] |.foo` |  |
+| //*[@title] | *[title] |
+| //p/*[0] | p > *:first-child |
+| //p[a] | Not possible |
+| //p/following-sibling::*[0] | p + * |
+
                     </section>
                     <section class="extra_layer" data-markdown>
                         ### Python Libraries
-                        + PyQuery
-                        + BeautifulSoup4
-                        + Selenium (built-in)
-                        + Scrapy (built-in)
+                        + [PyQuery](https://pyquery.readthedocs.io/en/latest/)
+                        + [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+                        + [lxml](http://lxml.de/)
+                        + [cssselect](https://cssselect.readthedocs.io/en/latest/)
+                    </section>
+                    <section data-markdown>
+                        ### 比美麗的湯更美麗
+                        [PyCon Taiwan 2017 slides](https://aji.tw/slides/pycon2017)
                     </section>
                 </section>
                 <section>
