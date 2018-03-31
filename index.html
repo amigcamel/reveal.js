@@ -431,6 +431,8 @@ location.href=forum.php?mod=viewthread&tid=768&_dsign=6f979101
                         from robobrowser import RoboBrowser
 
                         browser = RoboBrowser(history=True)
+                        url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
+                        browser.open(url)
                         form = browser.get_form(action='/ask/over18')
                         form['from'].value = 'yes'
                         browser.submit_form(form)
