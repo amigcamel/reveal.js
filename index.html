@@ -57,9 +57,10 @@
     }
     .btn-copy {
       position: absolute;
-      top: 3px;
-      right: 2px;
-      font-size: 20px;
+      top: 5px;
+      right: 5px;
+      z-index: 100;
+      cursor: pointer;
     }
     .btn-copy:before {
       font-family: "Font Awesome 5 Free";
@@ -738,14 +739,24 @@ with open('appledaily.json', 'w') as f:
         });
         // Clipboard.js
         var eles = document.getElementsByTagName("code");
-        var btn = document.createElement("button");
-        btn.className = "btn-copy"; 
         var max = eles.length;
         for (var i=0; i<max; i++) {
           if (eles[i].parentNode.tagName == "PRE") {
+            eles[i].setAttribute("id", "_code" + i)
+            var btn = document.createElement("div");
+            btn.className = "btn-copy"; 
+            btn.setAttribute("data-clipboard-target", "#_code" + i);
             eles[i].parentNode.prepend(btn);
           }
-        }
+        };
+        var clipboard = new ClipboardJS('.btn-copy');
+        clipboard.on('success', function(e) {
+          console.log(e);
+          e.clearSelection();
+        });
+        clipboard.on('error', function(e) {
+          console.log(e);
+        });
       };
     })()
     </script>
