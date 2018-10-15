@@ -36,6 +36,19 @@
       background: rgba(255, 255, 0, 0.4);
       border-radius: 3px;
     }
+    pre {
+      counter-increment: listing 0;
+    }
+    pre > code > .line::before {
+      counter-increment: listing;
+      content: counter(listing, decimal-leading-zero);
+      color: rgba(182, 182, 182, 0.4);
+      display: inline-block;
+      width: 2em;
+      padding-left: 0;
+      margin-left: 0;
+      text-align: left;
+    }
     .fragment.current-visible.visible:not(.current-fragment) {
      display: none;
       height:0px;
@@ -360,7 +373,335 @@ print(response.status_code)
 | `p         `   | `p` 標籤 (tag)
 | `p > *     `   | `p` 下一階的任一元素
 | `#foo      `   | `id="foo"` 
-| `.foo      `   | `class="foo"` 
+| `.bar      `   | `class="bar"` 
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 請在剛剛建立 `server.py` 的同一個資料夾下，建立 `demo.html`   
+
+```html
+<html>
+  <div id="foo">hello</div>
+  <p>
+    <span>hello</span>
+  </p>
+  <div class="bar">bar1</div>
+  <div class="bar">bar2</div>
+  <div class="bar">bar3</div>
+</html>
+```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 發送 `GET` 請求至 `demo.html`
+```python
+response = session.get('http://127.0.0.1:8000/demo.html')
+html = response.text
+```
+
+<i class="fas fa-code"></i> 用 `BeautifulSoup` 將 `html` 轉為 `DOM`
+```python
+from bs4 import BeautifulSoup
+dom = BeautifulSoup(html)
+```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 找出 `hello`
+```python
+dom.select('#foo')[0].text
+```
+
+<i class="fas fa-code"></i> 找出 `world`
+```python
+dom.select('p > span')[0].text
+dom.select('p span')[0].text
+dom.select('p *')[0].text
+```
+<small>此結構中，這3種選擇方式是一樣的</small>
+
+<i class="fas fa-code"></i> 找出 `bar1` `bar2` `bar3`
+```python
+[i.text for i in dom.select('div.bar')]
+[i.text for i in dom.select('.bar')]
+
+```
+<small>此結構中，這2種選擇方式是一樣的</small>
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+## 實戰
+
+![appledaily](https://img.appledaily.com.tw/pay/img/tw_applelogo_v7.png)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+### 流程
+0. 蒐集 **即時 > 最新** 所有當日新聞連結
+0. 蒐集所有連結的內容並轉存為結構化的資料
+0. 將結構化的資料輸出成檔案
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 事前準備
+
+```python 
+from datetime import datetime
+from time import sleep
+from random import random
+
+from requests import Session
+from bs4 import BeautifulSoup
+
+session = Session()
+session.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+```
+
+import 必要套件 <!-- .element: class="fragment current-visible" data-code-focus="1-6" -->
+
+處理文章時間的函式 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
+
+讓程式暫停的函式 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
+
+隨機產生0到1之間的小數 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+
+記得更改 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="9" -->
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+### 蒐集連結
+
+<i class="fas fa-code"></i>  設定變數
+
+```python
+base_url = 'https://tw.appledaily.com/new/realtime/{page}'
+page = 1
+links = []
+current_date = datetime.now().date()
+```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 遞迴找出所有連結
+```python
+while True:
+    url = base_url.format(page=page)
+    response = session.get(url)
+    print(f'已經爬到第{page}頁面')
+    dom = BeautifulSoup(response.text)
+    raw_time = dom.select('h1.dddd > time')[0].text
+    date = datetime.strptime(raw_time, '%Y / %m / %d').date()
+    if date < current_date:
+        break
+    elements = dom.select('h1.dddd + ul.rtddd > li')
+    for element in elements:
+        link = element.select('a')[0]['href'] 
+        links.append(link)
+    sleep(random() * 5)
+    page += 1
+```
+
+while 迴圈 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
+
+組成 url  <!-- .element: class="fragment current-visible" data-code-focus="2" -->
+
+發送 GET 請求  <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+
+在螢幕上顯示爬到的頁面  <!-- .element: class="fragment current-visible" data-code-focus="4" -->
+
+轉換成 DOM  <!-- .element: class="fragment current-visible" data-code-focus="5" -->
+
+取出日期  <!-- .element: class="fragment current-visible" data-code-focus="6" -->
+
+轉換成 datetime 物件  <!-- .element: class="fragment current-visible" data-code-focus="7" -->
+
+如果顯示日期小於本日，則跳出迴圈 <!-- .element: class="fragment current-visible" data-code-focus="8-9" -->
+
+取出所有文章列表 <!-- .element: class="fragment current-visible" data-code-focus="10" -->
+
+遍歷所有文章列表 <!-- .element: class="fragment current-visible" data-code-focus="11" -->
+
+取出文章url <!-- .element: class="fragment current-visible" data-code-focus="12" -->
+
+隨機等待幾秒，以免變成暴力攻擊 <!-- .element: class="fragment current-visible" data-code-focus="14" -->
+
+迴圈結束，page 加 1 <!-- .element: class="fragment current-visible" data-code-focus="15" -->
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+### 蒐集內容
+
+<i class="fas fa-code"></i> 取得所有連結內容
+
+```python 
+htmls = []
+for num, link in enumerate(links):
+    print(f'還剩下{len(links) - num}個頁面')
+    response = session.get(link)
+    htmls.append(response.text)
+    sleep(random() * 5)
+```
+
+建立 list 物件，用以儲存網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
+
+遍歷每一個連結 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
+
+顯示還剩下多少個連結沒有拜訪 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+
+送出 GET 請求 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
+
+儲存網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="5" -->
+
+隨機等待幾秒，以免變成暴力攻擊 <!-- .element: class="fragment current-visible" data-code-focus="6" -->
+
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 元素定位與將資料結構化
+
+```python
+posts = []
+for html in htmls:
+    dom = BeautifulSoup(response.text)
+    title = dom.select('article.ndArticle_leftColumn h1')[0].text
+    created_time = dom.select('article.ndArticle_leftColumn div.ndArticle_creat')[0].text
+    category = dom.select('nav div.ndgTag a.current')[0].text
+    content = dom.select('article.ndArticle_content p')[0].text
+    post = dict(title=title, created_time=created_time, category=category, content=content)
+    posts.append(post)
+```
+
+建立 list 物件以存放結構化資料 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
+
+遍歷所有網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
+
+轉換成 DOM <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+
+取出新聞標題 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
+
+取出新聞時間 <!-- .element: class="fragment current-visible" data-code-focus="5" -->
+
+取出新聞分類 <!-- .element: class="fragment current-visible" data-code-focus="6" -->
+
+取出新聞內容 <!-- .element: class="fragment current-visible" data-code-focus="7" -->
+
+存成 dict 型別 <!-- .element: class="fragment current-visible" data-code-focus="8" -->
+
+將結構化資料存進 list <!-- .element: class="fragment current-visible" data-code-focus="9" -->
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+### 輸出檔案
+
+<i class="fas fa-code"></i> 儲存成 `JSON` 格式
+
+```python
+import json
+
+with open('appledaily.json', 'w') as f:
+    json.dump(posts, f)
+```
+
+import json 模組 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
+
+建立名為 appledaily.json 的文件 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+
+將資料寫入文件 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+<i class="fas fa-code"></i> 完整的程式碼
+
+```python
+from datetime import datetime
+from time import sleep
+from random import random
+import json
+
+from requests import Session
+from bs4 import BeautifulSoup
+
+session = Session()
+session.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+
+
+base_url = 'https://tw.appledaily.com/new/realtime/{page}'
+page = 1
+links = []
+current_date = datetime.now().date()
+
+while True:
+    url = base_url.format(page=page)
+    response = session.get(url)
+    print(f'已經爬到第{page}頁')
+    dom = BeautifulSoup(response.text)
+    raw_time = dom.select('h1.dddd > time')[0].text
+    date = datetime.strptime(raw_time, '%Y / %m / %d').date()
+    if date < current_date:
+        break
+    elements = dom.select('h1.dddd + ul.rtddd > li')
+    for element in elements:
+        link = element.select('a')[0]['href']
+        links.append(link)
+    sleep(random() * 5)
+    page += 1
+
+base_url = 'https://tw.appledaily.com/new/realtime/{page}'
+page = 1
+links = []
+current_date = datetime.now().date()
+
+while True:
+    url = base_url.format(page=page)
+    response = session.get(url)
+    print(f'已經爬到第{page}頁面')
+    dom = BeautifulSoup(response.text)
+    raw_time = dom.select('h1.dddd > time')[0].text
+    date = datetime.strptime(raw_time, '%Y / %m / %d').date()
+    if date < current_date:
+        break
+    elements = dom.select('h1.dddd + ul.rtddd > li')
+    for element in elements:
+        link = element.select('a')[0]['href']
+        links.append(link)
+    sleep(random() * 5)
+    page += 1
+
+htmls = []
+for num, link in enumerate(links):
+    print(f'還剩下{len(links) - num}個頁面')
+    response = session.get(link)
+    htmls.append(response.text)
+    sleep(random() * 5)
+
+posts = []
+for html in htmls:
+    dom = BeautifulSoup(response.text)
+    title = dom.select('article.ndArticle_leftColumn h1')[0].text
+    created_time = dom.select('article.ndArticle_leftColumn div.ndArticle_creat')[0].text
+    category = dom.select('nav div.ndgTag a.current')[0].text
+    content = dom.select('article.ndArticle_content p')[0].text
+    post = dict(title=title, created_time=created_time, category=category, content=content)
+    posts.append(post)
+
+with open('appledaily.json', 'w') as f:
+    json.dump(posts, f)
+```
             </textarea>
           </section>
         </section>
@@ -409,23 +750,6 @@ print(response.status_code)
           markers: true,
           themes: false,
           transitions: false
-        }
-      });
-    </script>
-    <script>
-      document.querySelectorAll('section > h1, section > h2, section > h3').forEach(function(e) {
-        if (!e.parentElement.getAttribute('id')) {
-          var slug = e.innerText.toLowerCase().replace(/[_\s-]/g, '-').replace(/[+().]/g, '').replace('--', '-');
-          e.parentElement.setAttribute('id', slug);
-        }
-      });
-      Reveal.addEventListener('slidechanged', function(event) {
-        if (event.currentSlide.getAttribute('data-background-iframe')) {
-          document.querySelector('.reveal > .backgrounds').style['z-index'] = 1;
-          console.log('z-index set to 1');
-        } else {
-          document.querySelector('.reveal > .backgrounds').style['z-index'] = 0;
-          console.log('z-index set to 0');
         }
       });
     </script>
