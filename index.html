@@ -55,6 +55,17 @@
       line-height: 0px;
       font-size: 0px;
     }
+    .btn-copy {
+      position: absolute;
+      top: 3px;
+      right: 2px;
+      font-size: 20px;
+    }
+    .btn-copy:before {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f0c5";
+    }
     </style>
   </head>
   <body>
@@ -712,19 +723,30 @@ with open('appledaily.json', 'w') as f:
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
     (function(){
-        var tId = setInterval(function() {
-          if (document.readyState == "complete") onComplete()
-        }, 11);
-        function onComplete(){
-          clearInterval(tId);    
-          var qr = new QRious({
-            element: document.getElementById('qr'),
-            value: window.location.href,
-            size: 180,
-          });
-        };
+      var tId = setInterval(function() {
+        if (document.readyState == "complete") onComplete()
+      }, 11);
+      function onComplete(){
+        clearInterval(tId);    
+        var qr = new QRious({
+          element: document.getElementById('qr'),
+          value: window.location.href,
+          size: 180,
+        });
+        // Clipboard.js
+        var eles = document.getElementsByTagName("code");
+        var btn = document.createElement("button");
+        btn.className = "btn-copy"; 
+        var max = eles.length;
+        for (var i=0; i<max; i++) {
+          if (eles[i].parentNode.tagName == "PRE") {
+            eles[i].parentNode.prepend(btn);
+          }
+        }
+      };
     })()
     </script>
     <script>
