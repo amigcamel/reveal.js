@@ -39,7 +39,7 @@
     pre {
       counter-increment: listing 0;
     }
-    pre > code:not(.lang-bash,.lang-text) > .line:before {
+    pre > code:not(.lang-bash) > .line:before {
       counter-increment: listing;
       content: counter(listing, decimal-leading-zero);
       color: rgba(182, 182, 182, 0.4);
