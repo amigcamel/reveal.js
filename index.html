@@ -744,6 +744,7 @@ with open('appledaily.json', 'w') as f:
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
@@ -794,7 +795,6 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/markdown/marked.js' },
           { src: 'plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'https://cdn.jsdelivr.net/npm/reveal-code-focus@1.0.0/reveal-code-focus.min.js', async: true, callback: function() { RevealCodeFocus() } },
           { src: 'plugin/reveal.js-menu/menu.js'},
           { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
