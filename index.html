@@ -724,7 +724,7 @@ for num, link in enumerate(links):
 
 posts = []
 for html in htmls:
-    dom = BeautifulSoup(response.text)
+    dom = BeautifulSoup(html)
     title = dom.select('article.ndArticle_leftColumn h1')[0].text
     created_time = dom.select('article.ndArticle_leftColumn div.ndArticle_creat')[0].text
     category = dom.select('nav div.ndgTag a.current')[0].text
