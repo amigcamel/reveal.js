@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>語料庫 x 爬蟲</title>
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/night.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/white.min.css">
     <link rel="stylesheet" href="plugin/title-footer/title-footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow-night-bright.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
       var link = document.createElement( 'link' );
@@ -87,6 +87,9 @@
       -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
     }
+    .reveal a {
+      color: #000;
+    }
     </style>
   </head>
   <body>
@@ -99,7 +102,7 @@
 # 語料庫 x 爬蟲
 
 <a target="_blank" href="https://aji.tw">
-![logo](https://aji.tw/static_all/img/logo.png) <!-- .elements width="60px" -->
+![logo](https://aji.tw/static_all/img/logo.png) <!-- .elements width="60px" style="filter: invert(100%)" -->
 </a>
 
 <canvas id="qr"></canvas>
@@ -123,13 +126,13 @@
             <textarea data-template>
 簡單講就是...
 
-把別人的東西變成自己的東西 <!-- .elements class="fragment" -->
+把別人的東西變成自己的東西
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### 全世界最大的爬蟲公司
-![google](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg) <!-- .elements class="fragment" -->
+![google](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg) 
             </textarea>
           </section>
           <section data-markdown>
@@ -194,19 +197,6 @@
 | No CAPTCHA reCAPTCHA   | 工人智慧                  |
             </textarea>
           </section>
-          <section data-markdown>
-            <textarea data-template>
-### 反反反爬蟲
-
-+ 反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-            </textarea>
-          </section>
         </section>
 
         <section> 
@@ -227,7 +217,7 @@
             <textarea data-template>
 ###  瀏覽器 
 
-<i class="fab fa-chrome"></i> Google Chrome
+Google Chrome
 
             </textarea>
           </section>
@@ -256,7 +246,7 @@ pip install -U beautifulsoup4
           <section data-markdown>
             <textarea data-template>
 請先準備一個測試用的 web server  
-<i class="fas fa-code"></i> 建立 `server.py`
+建立 `server.py`
 ```python
 from http.server import SimpleHTTPRequestHandler
 from socketserver import TCPServer
@@ -271,7 +261,7 @@ print('press CTRL+C to stop...')
 TCPServer(("127.0.0.1", 8000), WebServer).serve_forever()
 ```
 
-<i class="fas fa-code"></i> 在終端機執行
+在終端機執行
 
 ```bash
 python server.py
@@ -303,12 +293,11 @@ Cookie: __cfduid=df5348086ef38be7990d6…d=GA1.2.1406394816.1522116242
 Host: static.tutsplus.com
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0
 ```
-User-Agent 代表的是瀏覽器的資訊 <!-- .elements class="fragment" data-code-focus="7" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 查看 `User-Agent` 
+查看 `User-Agent` 
 
 ```python 
 from requests import Session
@@ -318,33 +307,26 @@ print(session.headers['user-agent'])
 session.get('http://127.0.0.1:8000')
 ```
 
-預設為 python-requests/2.19.1 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
 
-發送請求至 web server，看到一樣的 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="5" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 更改 `User-Agent` 
+更改 `User-Agent` 
 
 ```python 
 google_ua = 'Googlebot/2.1 (+http://www.google.com/bot.html)'
 session.headers['User-Agent'] = google_ua
 session.get('http://127.0.0.1:8000')
 ```
-這是 Google 常用的 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-修改預設 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-從 web server 查看是否成功 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### [HTTP 請求方法](https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods)
 
-+ GET <!-- .element: class="fragment highlight-red grow" -->
-+ POST <!-- .element: class="fragment highlight-red grow" -->
++ GET 
++ POST 
 + HEAD 
 + PUT
 + DELETE
@@ -356,14 +338,11 @@ session.get('http://127.0.0.1:8000')
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 發送請求 
+發送請求 
 ```python 
 session.get('http://127.0.0.1')
 session.post('http://127.0.0.1')
 ```
-這就是一個 GET 的請求 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-這就是一個 POST 的請求 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
             </textarea>
           </section>
           <section data-markdown>
@@ -378,7 +357,7 @@ session.post('http://127.0.0.1')
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 查看狀態碼
+查看狀態碼
 
 `GET`
 ```python 
@@ -391,9 +370,6 @@ print(response.status_code)
 response = session.post('http://127.0.0.1')
 print(response.status_code)
 ```
-得到 200，代表成功回應 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-得到 501，代表伺服器沒有實作這個請求方法 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
             </textarea>
           </section>
           <section data-markdown>
@@ -411,7 +387,7 @@ print(response.status_code)
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 請在剛剛建立 `server.py` 的同一個資料夾下，建立 `demo.html`   
+請在剛剛建立 `server.py` 的同一個資料夾下，建立 `demo.html`   
 
 ```html
 <html>
@@ -428,13 +404,13 @@ print(response.status_code)
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 發送 `GET` 請求至 `demo.html`
+發送 `GET` 請求至 `demo.html`
 ```python
 response = session.get('http://127.0.0.1:8000/demo.html')
 html = response.text
 ```
 
-<i class="fas fa-code"></i> 用 `BeautifulSoup` 將 `html` 轉為 `DOM`
+用 `BeautifulSoup` 將 `html` 轉為 `DOM`
 ```python
 from bs4 import BeautifulSoup
 dom = BeautifulSoup(html)
@@ -443,12 +419,12 @@ dom = BeautifulSoup(html)
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 找出 `hello`
+找出 `hello`
 ```python
 dom.select('#foo')[0].text
 ```
 
-<i class="fas fa-code"></i> 找出 `world`
+找出 `world`
 ```python
 dom.select('p > span')[0].text
 dom.select('p span')[0].text
@@ -456,7 +432,7 @@ dom.select('p *')[0].text
 ```
 <small>此結構中，這3種選擇方式是一樣的</small>
 
-<i class="fas fa-code"></i> 找出 `bar1` `bar2` `bar3`
+找出 `bar1` `bar2` `bar3`
 ```python
 [i.text for i in dom.select('div.bar')]
 [i.text for i in dom.select('.bar')]
@@ -485,7 +461,7 @@ dom.select('p *')[0].text
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 事前準備
+事前準備
 
 ```python 
 from datetime import datetime
@@ -498,23 +474,13 @@ from bs4 import BeautifulSoup
 session = Session()
 session.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
-
-import 必要套件 <!-- .element: class="fragment current-visible" data-code-focus="1-6" -->
-
-處理文章時間的函式 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-讓程式暫停的函式 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-隨機產生0到1之間的小數 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
-
-記得更改 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="9" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### 蒐集連結
 
-<i class="fas fa-code"></i>  設定變數
+設定變數
 
 ```python
 base_url = 'https://tw.appledaily.com/new/realtime/{page}'
@@ -526,7 +492,7 @@ current_date = datetime.now().date()
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 遞迴找出所有連結
+遞迴找出所有連結
 ```python
 while True:
     url = base_url.format(page=page)
@@ -544,39 +510,13 @@ while True:
     sleep(random() * 5)
     page += 1
 ```
-
-while 迴圈 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-組成 url  <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-發送 GET 請求  <!-- .element: class="fragment current-visible" data-code-focus="3" -->
-
-在螢幕上顯示爬到的頁面  <!-- .element: class="fragment current-visible" data-code-focus="4" -->
-
-轉換成 DOM  <!-- .element: class="fragment current-visible" data-code-focus="5" -->
-
-取出日期  <!-- .element: class="fragment current-visible" data-code-focus="6" -->
-
-轉換成 datetime 物件  <!-- .element: class="fragment current-visible" data-code-focus="7" -->
-
-如果顯示日期小於本日，則跳出迴圈 <!-- .element: class="fragment current-visible" data-code-focus="8-9" -->
-
-取出所有文章列表 <!-- .element: class="fragment current-visible" data-code-focus="10" -->
-
-遍歷所有文章列表 <!-- .element: class="fragment current-visible" data-code-focus="11" -->
-
-取出文章url <!-- .element: class="fragment current-visible" data-code-focus="12" -->
-
-隨機等待幾秒，以免變成暴力攻擊 <!-- .element: class="fragment current-visible" data-code-focus="14" -->
-
-迴圈結束，page 加 1 <!-- .element: class="fragment current-visible" data-code-focus="15" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### 蒐集內容
 
-<i class="fas fa-code"></i> 取得所有連結內容
+取得所有連結內容
 
 ```python 
 htmls = []
@@ -586,24 +526,11 @@ for num, link in enumerate(links):
     htmls.append(response.text)
     sleep(random() * 5)
 ```
-
-建立 list 物件，用以儲存網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-遍歷每一個連結 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-顯示還剩下多少個連結沒有拜訪 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
-
-送出 GET 請求 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
-
-儲存網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="5" -->
-
-隨機等待幾秒，以免變成暴力攻擊 <!-- .element: class="fragment current-visible" data-code-focus="6" -->
-
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 元素定位與將資料結構化
+元素定位與將資料結構化
 
 ```python
 posts = []
@@ -616,31 +543,13 @@ for html in htmls:
     post = dict(title=title, created_time=created_time, category=category, content=content)
     posts.append(post)
 ```
-
-建立 list 物件以存放結構化資料 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-遍歷所有網頁原始碼 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
-
-轉換成 DOM <!-- .element: class="fragment current-visible" data-code-focus="3" -->
-
-取出新聞標題 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
-
-取出新聞時間 <!-- .element: class="fragment current-visible" data-code-focus="5" -->
-
-取出新聞分類 <!-- .element: class="fragment current-visible" data-code-focus="6" -->
-
-取出新聞內容 <!-- .element: class="fragment current-visible" data-code-focus="7" -->
-
-存成 dict 型別 <!-- .element: class="fragment current-visible" data-code-focus="8" -->
-
-將結構化資料存進 list <!-- .element: class="fragment current-visible" data-code-focus="9" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### 輸出檔案
 
-<i class="fas fa-code"></i> 儲存成 `JSON` 格式
+儲存成 `JSON` 格式
 
 ```python
 import json
@@ -648,17 +557,11 @@ import json
 with open('appledaily.json', 'w') as f:
     json.dump(posts, f)
 ```
-
-import json 模組 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
-
-建立名為 appledaily.json 的文件 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
-
-將資料寫入文件 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
-<i class="fas fa-code"></i> 完整的程式碼
+完整的程式碼
 
 ```python
 from datetime import datetime
@@ -759,30 +662,6 @@ with open('appledaily.json', 'w') as f:
           size: 180,
         });
         // Clipboard.js
-        var eles = document.getElementsByTagName("code");
-        var max = eles.length;
-        for (var i=0; i<max; i++) {
-          if (eles[i].parentNode.tagName == "PRE") {
-            eles[i].setAttribute("id", "_code" + i)
-            var btn = document.createElement("div");
-            btn.className = "btn-copy"; 
-            btn.setAttribute("data-clipboard-target", "#_code" + i);
-            btn.setAttribute("data-interactive", true);
-            eles[i].parentNode.prepend(btn);
-          }
-        };
-        var clipboard = new ClipboardJS('.btn-copy');
-        clipboard.on('success', function(e) {
-          console.log(e);
-          document.getElementById("topmsg").style.opacity = 1;
-          setTimeout(function() {
-            document.getElementById("topmsg").style.opacity = 0;
-          }, 500);
-          e.clearSelection();
-        });
-        clipboard.on('error', function(e) {
-          console.log(e);
-        });
       };
     })()
     </script>
@@ -796,10 +675,7 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/notes/notes.js', async: true },
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'https://cdn.jsdelivr.net/npm/reveal-code-focus@1.0.0/reveal-code-focus.min.js', async: true, callback: function() { RevealCodeFocus() } },
-          { src: 'plugin/reveal.js-menu/menu.js'},
-          { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
         ],
-        parallaxBackgroundImage: './img/red-purple-abstract-w1.jpg',
         parallaxBackgroundSize: '2500px',
         parallaxBackgroundHorizontal: 90,
         parallaxBackgroundVertical: 45,
