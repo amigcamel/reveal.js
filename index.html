@@ -266,7 +266,7 @@
 + 反反反反爬蟲 <!-- .elements class="fragment"> -->
 + 反反反反反爬蟲 <!-- .elements class="fragment"> -->
 + 反反反反反反爬蟲 <!-- .elements class="fragment"> -->
-+ 反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
++ 反反反反反反反爬蟲 <!-- .elements class="fragment" id="mindblowing"> -->
 + 反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
 + 反反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
 + 反反反反反反反反反反爬蟲 <!-- .elements class="fragment"> -->
@@ -849,6 +849,16 @@ with open('appledaily.json', 'w') as f:
         clipboard.on('error', function(e) {
           console.log(e);
         });
+        // mindblowing
+        var targetNode = document.getElementById('mindblowing');
+        var observer = new MutationObserver(function(){
+           if(targetNode.className.indexOf('visible') != -1 ){
+             targetNode.closest('section').setAttribute('data-background', 'https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif');
+             Reveal.sync();
+             observer.disconnect();
+           }
+        });
+        observer.observe(targetNode,  { attributes: true, childList: true });
       };
     })()
     </script>
