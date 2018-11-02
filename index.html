@@ -103,6 +103,10 @@
 </a>
 
 <canvas id="qr"></canvas>
+
+Note:
+念語言所的
+工程師不歸路
           </textarea>
         </section>
 
@@ -110,6 +114,10 @@
           <section data-markdown>
             <textarea data-template>
 ## 什麼蟲？能吃嗎？
+
+Note:
+調查一下聽過的人
+網路爬蟲有些人可能第一次聽到，更多人可能比較聽過網路男蟲
             </textarea>
           </section>
           <section data-markdown>
@@ -117,6 +125,10 @@
 ### 爬蟲是什麼？
 
 > 網路爬蟲...是一種用來自動瀏覽全球資訊網的網路機器人。其目的一般為編纂網路索引。 網路搜尋引擎等站點通過爬蟲軟體更新自身的網站內容或其對其他網站的索引。網路爬蟲可以將自己所存取的頁面儲存下來，以便搜尋引擎事後生成索引供用戶搜尋。 (來源：[維基百科](https://zh.wikipedia.org/zh-tw/網路爬蟲))
+
+Note:
+每個人都有經驗
+複製貼上的行為
             </textarea>
           </section>
           <section data-markdown>
@@ -124,12 +136,20 @@
 簡單講就是...
 
 把別人的東西變成自己的東西 <!-- .elements class="fragment" -->
+
+Note:
+成就感
+蒐集癖
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
 ### 全世界最大的爬蟲公司
 ![google](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg) <!-- .elements class="fragment" -->
+
+Note:
+為什麼可以這麼短時間搜尋到我們要的關鍵字
+Google 去爬全世界的網站，建立索引
             </textarea>
           </section>
           <section data-markdown>
@@ -143,6 +163,10 @@
 ![Sogou](https://upload.wikimedia.org/wikipedia/en/3/38/Sogou_logo.png) <!-- .elements width="200px" -->
 ![Facebook](https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png) <!-- .elements width="50px" -->
 ![Alexa](https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_Alexa_logo.svg) <!-- .elements width="250px" -->
+
+Note:
+有人不遵守
+法律議題 
               </div>
             </textarea>
           </section>
@@ -154,6 +178,11 @@
 
 <i class="fas fa-bullhorn"></i> 
 不是規範，只是約定俗成
+
+Note:
+robots.txt: appledaily setn pchome
+為什麼不給爬
+有些人就不遵守
             </textarea>
           </section>
         </section>
@@ -178,6 +207,9 @@
 + 文字圖形化 
 + 圖形驗證碼 
 + No CAPTCHA reCAPTCHA 
+
+Note:
+DOS DDOS
             </textarea>
           </section>
           <section data-markdown>
@@ -192,6 +224,10 @@
 | 文字圖形化             | 光學字元辨識              |
 | 圖形驗證碼             | 人工智慧                  | 
 | No CAPTCHA reCAPTCHA   | 工人智慧                  |
+
+Note:
+TOR VPN 
+captcha 番茄醬?
             </textarea>
           </section>
           <section data-markdown>
@@ -797,6 +833,7 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'https://cdn.jsdelivr.net/npm/reveal-code-focus@1.0.0/reveal-code-focus.min.js', async: true, callback: function() { RevealCodeFocus() } },
           { src: 'plugin/reveal.js-menu/menu.js'},
+          { src: 'plugin/remeal/src/plugins/remeal.js', async: true, callback: () => initRemeal() },
           { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
         ],
         parallaxBackgroundImage: './img/red-purple-abstract-w1.jpg',
