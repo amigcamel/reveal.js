@@ -1,3 +1,6 @@
 [submodule "plugin/reveal.js-menu"]
 	path = plugin/reveal.js-menu
 	url = https://github.com/denehyg/reveal.js-menu.git
+[submodule "plugin/spotlight"]
+	path = plugin/spotlight
+	url = https://github.com/denniskniep/reveal.js-plugin-spotlight.git

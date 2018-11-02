@@ -39,7 +39,7 @@
     pre {
       counter-increment: listing 0;
     }
-    pre > code:not(.lang-bash,.lang-text) > .line:before {
+    pre > code:not(.lang-bash) > .line:before {
       counter-increment: listing;
       content: counter(listing, decimal-leading-zero);
       color: rgba(182, 182, 182, 0.4);
@@ -94,20 +94,30 @@
     <div class="reveal">
       <div class="slides">
 
-        <section data-markdown>
-          <textarea data-template>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
 # 語料庫 x 爬蟲
 
 <a target="_blank" href="https://aji.tw">
-![logo](https://aji.tw/static_all/img/logo.png) <!-- .elements width="60px" -->
+  ![logo](https://aji.tw/static_all/img/logo.png) <!-- .elements width="60px" -->
 </a>
 
 <canvas id="qr"></canvas>
+<p><small>劉純睿 / 阿吉</small></p>
 
 Note:
 念語言所的
 工程師不歸路
-          </textarea>
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+此系列講座的相關檔案 
+
+<i class="fab fa-github"></i> [資源下載](https://github.com/lopentu/BestPracticeInCorpusProgramming) 
+            </textarea>
+          </section>
         </section>
 
         <section>
@@ -134,6 +144,8 @@ Note:
           <section data-markdown>
             <textarea data-template>
 簡單講就是...
+
+全家就是你家 <!-- .elements class="fragment" -->
 
 把別人的東西變成自己的東西 <!-- .elements class="fragment" -->
 
@@ -175,14 +187,59 @@ Note:
 ### `robots.txt` 
 
 > robots.txt 是一種存放於網站根目錄下的文字檔案，它通常告訴網路搜尋引擎此網站中的哪些內容是不應被搜尋引擎取得的，哪些是可以被取得的。[(wiki)](https://zh.wikipedia.org/zh-tw/Robots.txt)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
++ 蘋果新聞
 
+    https://tw.news.appledaily.com/robots.txt
+
++ 三立新聞
+
+    https://www.setn.com/robots.txt
+
++ 蝦皮購物
+
+    http://shopee.tw/robots.txt
+
+<p class="fragment">
 <i class="fas fa-bullhorn"></i> 
 不是規範，只是約定俗成
+</p>
 
 Note:
 robots.txt: appledaily setn pchome
 為什麼不給爬
 有些人就不遵守
+
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+## 爬蟲吃什麼？
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+適合當作語料的資料須至少具備
+
++ 標題
++ 作者
++ 時間
++ 內文
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+不適合當作語料的資料
+
++ 房屋物件
++ 商品項目
++ 專題活動
             </textarea>
           </section>
         </section>
@@ -211,6 +268,15 @@ robots.txt: appledaily setn pchome
 Note:
 DOS DDOS
             </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+![captcha](http://www.captcha.net/images/recaptcha-example.gif)
+![I'm not a robot](https://buzzorange.com/techorange/wp-content/uploads/sites/2/2017/09/2390.gif)
+![tra](https://pic.pimg.tw/mk1204/1487152855-4143860094.png)
+            </textarea>
+          </section>
+          <section data-background="https://dvblobcdnjp.azureedge.net//Content/ueditor/net/upload1/6363504632735561173736950.jpg" data-background-size="contain">
           </section>
           <section data-markdown>
             <textarea data-template>
@@ -780,6 +846,7 @@ with open('appledaily.json', 'w') as f:
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
@@ -830,10 +897,10 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/markdown/marked.js' },
           { src: 'plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'https://cdn.jsdelivr.net/npm/reveal-code-focus@1.0.0/reveal-code-focus.min.js', async: true, callback: function() { RevealCodeFocus() } },
           { src: 'plugin/reveal.js-menu/menu.js'},
           { src: 'plugin/remeal/src/plugins/remeal.js', async: true, callback: () => initRemeal() },
+          { src: 'plugin/spotlight/spotlight.js'},
           { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
         ],
         parallaxBackgroundImage: './img/red-purple-abstract-w1.jpg',
@@ -846,7 +913,14 @@ with open('appledaily.json', 'w') as f:
           markers: true,
           themes: false,
           transitions: false
-        }
+        },
+        spotlight: {
+          size: 80,
+          toggleSpotlightOnMouseDown: false,
+        },
+        keyboard: {
+          83: function() { RevealSpotlight.toggleSpotlight() }, // "s"
+        },
       });
     </script>
     <script>
