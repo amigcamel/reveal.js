@@ -4,3 +4,6 @@
 [submodule "plugin/spotlight"]
 	path = plugin/spotlight
 	url = https://github.com/denniskniep/reveal.js-plugin-spotlight.git
+[submodule "plugin/remeal"]
+	path = plugin/remeal
+	url = https://github.com/dmitry-korolev/remeal
