@@ -862,6 +862,7 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'https://cdn.jsdelivr.net/npm/reveal-code-focus@1.0.0/reveal-code-focus.min.js', async: true, callback: function() { RevealCodeFocus() } },
           { src: 'plugin/reveal.js-menu/menu.js'},
+          { src: 'plugin/spotlight/spotlight.js'},
           { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
         ],
         parallaxBackgroundImage: './img/red-purple-abstract-w1.jpg',
@@ -874,7 +875,14 @@ with open('appledaily.json', 'w') as f:
           markers: true,
           themes: false,
           transitions: false
-        }
+        },
+        spotlight: {
+          size: 80,
+          toggleSpotlightOnMouseDown: false,
+        },
+        keyboard: {
+          83: function() { RevealSpotlight.toggleSpotlight() }, // "s"
+        },
       });
     </script>
     <script>
