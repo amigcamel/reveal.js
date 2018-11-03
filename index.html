@@ -807,7 +807,7 @@ for html in htmls:
     posts.append(post)
 
 with open('appledaily.json', 'w') as f:
-    json.dump(posts, f)
+    json.dump(posts, f, ensure_ascii=False, indent=2)
 ```
             </textarea>
           </section>
