@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>語料庫 x 爬蟲</title>
+    <title>爬蟲101</title>
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/night.min.css">
     <link rel="stylesheet" href="plugin/title-footer/title-footer.css">
@@ -97,7 +97,7 @@
         <section>
           <section data-markdown>
             <textarea data-template>
-# 語料庫 x 爬蟲
+#  爬蟲101
 
 <a target="_blank" href="https://aji.tw">
   ![logo](https://aji.tw/static_all/img/logo.png) <!-- .elements width="60px" -->
@@ -109,13 +109,6 @@
 Note:
 念語言所的
 工程師不歸路
-            </textarea>
-          </section>
-          <section data-markdown>
-            <textarea data-template>
-此系列講座的相關檔案 
-
-<i class="fab fa-github"></i> [資源下載](https://github.com/lopentu/BestPracticeInCorpusProgramming) 
             </textarea>
           </section>
         </section>
@@ -170,7 +163,7 @@ Google 去爬全世界的網站，建立索引
               <div style="background-color:rgba(255, 255, 255, 0.6);border-radius:5px">
 ![Bing](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bing_logo_%282016%29.svg/1000px-Bing_logo_%282016%29.svg.png)  <!-- .elements width="200px" -->
 ![Yahoo](https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Yahoo%21_logo.svg/512px-Yahoo%21_logo.svg.png) <!-- .elements width="200px" -->
-![DuckDuckGo](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/DuckDuckGo_logo_and_wordmark_%282014-present%29.svg/250px-DuckDuckGo_logo_and_wordmark_%282014-present%29.svg.png) <!-- .elements width="200px" -->
+![DuckDuckGo](https://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/1920px-DuckDuckGo_logo.svg.png) <!-- .elements width="200px" -->
 ![Baiduspider](https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Baidu.svg/231px-Baidu.svg.png) <!-- .elements width="200px" -->
 ![Sogou](https://upload.wikimedia.org/wikipedia/en/3/38/Sogou_logo.png) <!-- .elements width="200px" -->
 ![Facebook](https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png) <!-- .elements width="50px" -->
@@ -178,7 +171,7 @@ Google 去爬全世界的網站，建立索引
 
 Note:
 有人不遵守
-法律議題 
+法律議 
               </div>
             </textarea>
           </section>
@@ -311,6 +304,29 @@ captcha 番茄醬?
           </section>
         </section>
 
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+## 爬蟲可以很複雜 
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+![crawler-flow](./img/crawler-flow.svg)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+### 結構 
++ Distributed system
++ Caching
++ Job controlling/queue
++ Testing and monitoring
++ CI/CD
+            </textarea>
+          </section>
+       </section>
+
         <section> 
           <section data-markdown>
             <textarea data-template>
@@ -355,31 +371,6 @@ pip install -U beautifulsoup4
 ## 基礎知識 
             </textarea>
           </section>
-          <section data-markdown>
-            <textarea data-template>
-請先準備一個測試用的 web server  
-<i class="fas fa-code"></i> 建立 `server.py`
-```python
-from http.server import SimpleHTTPRequestHandler
-from socketserver import TCPServer
-
-class WebServer(SimpleHTTPRequestHandler):
-
-    def do_GET(self):
-        print(self.headers)
-        super().do_GET()
-
-print('press CTRL+C to stop...')
-TCPServer(("127.0.0.1", 8000), WebServer).serve_forever()
-```
-
-<i class="fas fa-code"></i> 在終端機執行
-
-```bash
-python server.py
-```
-            </textarea>
-          </section>
           <section data-markdown class="extra_layer">
             <textarea data-template>
 ### 網頁技術 
@@ -417,12 +408,9 @@ from requests import Session
 
 session = Session()
 print(session.headers['user-agent'])
-session.get('http://127.0.0.1:8000')
 ```
 
 預設為 python-requests/2.19.1 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
-
-發送請求至 web server，看到一樣的 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="5" -->
             </textarea>
           </section>
           <section data-markdown>
@@ -432,13 +420,14 @@ session.get('http://127.0.0.1:8000')
 ```python 
 google_ua = 'Googlebot/2.1 (+http://www.google.com/bot.html)'
 session.headers['User-Agent'] = google_ua
-session.get('http://127.0.0.1:8000')
+resp = session.get('https://www.whatsmyua.info/api/v1/ua')
+print(resp.json()[0]['ua']['rawUa'])
 ```
 這是 Google 常用的 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="1" -->
 
 修改預設 User-Agent <!-- .element: class="fragment current-visible" data-code-focus="2" -->
 
-從 web server 查看是否成功 <!-- .element: class="fragment current-visible" data-code-focus="3" -->
+查看是否成功 <!-- .element: class="fragment current-visible" data-code-focus="3-4" -->
             </textarea>
           </section>
           <section data-markdown>
@@ -460,8 +449,8 @@ session.get('http://127.0.0.1:8000')
             <textarea data-template>
 <i class="fas fa-code"></i> 發送請求 
 ```python 
-session.get('http://127.0.0.1')
-session.post('http://127.0.0.1')
+session.get('https://google.com')
+session.post('https://google.com')
 ```
 這就是一個 GET 的請求 <!-- .element: class="fragment current-visible" data-code-focus="1" -->
 
@@ -484,18 +473,18 @@ session.post('http://127.0.0.1')
 
 `GET`
 ```python 
-response = session.get('http://127.0.0.1')
+response = session.get('https://google.com')
 print(response.status_code)
 ```
 
 `POST`
 ```python
-response = session.post('http://127.0.0.1')
+response = session.post('https://google.com')
 print(response.status_code)
 ```
 得到 200，代表成功回應 <!-- .element: class="fragment current-visible" data-code-focus="2" -->
 
-得到 501，代表伺服器沒有實作這個請求方法 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
+得到 405，代表伺服器不允許使用該方法 <!-- .element: class="fragment current-visible" data-code-focus="4" -->
             </textarea>
           </section>
           <section data-markdown>
@@ -509,62 +498,6 @@ print(response.status_code)
 | `p > *     `   | `p` 下一階的任一元素
 | `#foo      `   | `id="foo"` 
 | `.bar      `   | `class="bar"` 
-            </textarea>
-          </section>
-          <section data-markdown>
-            <textarea data-template>
-<i class="fas fa-code"></i> 請在剛剛建立 `server.py` 的同一個資料夾下，建立 `demo.html`   
-
-```html
-<html>
-  <div id="foo">hello</div>
-  <p>
-    <span>hello</span>
-  </p>
-  <div class="bar">bar1</div>
-  <div class="bar">bar2</div>
-  <div class="bar">bar3</div>
-</html>
-```
-            </textarea>
-          </section>
-          <section data-markdown>
-            <textarea data-template>
-<i class="fas fa-code"></i> 發送 `GET` 請求至 `demo.html`
-```python
-response = session.get('http://127.0.0.1:8000/demo.html')
-html = response.text
-```
-
-<i class="fas fa-code"></i> 用 `BeautifulSoup` 將 `html` 轉為 `DOM`
-```python
-from bs4 import BeautifulSoup
-dom = BeautifulSoup(html)
-```
-            </textarea>
-          </section>
-          <section data-markdown>
-            <textarea data-template>
-<i class="fas fa-code"></i> 找出 `hello`
-```python
-dom.select('#foo')[0].text
-```
-
-<i class="fas fa-code"></i> 找出 `world`
-```python
-dom.select('p > span')[0].text
-dom.select('p span')[0].text
-dom.select('p *')[0].text
-```
-<small>此結構中，這3種選擇方式是一樣的</small>
-
-<i class="fas fa-code"></i> 找出 `bar1` `bar2` `bar3`
-```python
-[i.text for i in dom.select('div.bar')]
-[i.text for i in dom.select('.bar')]
-
-```
-<small>此結構中，這2種選擇方式是一樣的</small>
             </textarea>
           </section>
           <section data-markdown>
@@ -922,7 +855,7 @@ with open('appledaily.json', 'w') as f:
           { src: 'plugin/spotlight/spotlight.js'},
           { src: 'https://cdn.rawgit.com/e-gor/Reveal.js-Title-Footer/master/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
         ],
-        parallaxBackgroundImage: './img/red-purple-abstract-w1.jpg',
+        parallaxBackgroundImage: './img/thomas-tastet-1056492-unsplash.jpg',
         parallaxBackgroundSize: '2500px',
         parallaxBackgroundHorizontal: 90,
         parallaxBackgroundVertical: 45,
